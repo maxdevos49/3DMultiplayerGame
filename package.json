@@ -1,0 +1,18 @@
+{
+  "name": "gamejamfall2018",
+  "version": "1.0.0",
+  "description": "Game Jam Project",
+  "main": "/GameJamFall2018/server.js",
+  "scripts": {
+    "test": "nodemon ./GameJamFall2018/server.js"
+  },
+  "keywords": [
+    "node",
+    "vash",
+    "mongo",
+    "mongoose",
+    "socket.io"
+  ],
+  "author": "Maxwell DeVos",
+  "license": "ISC"
+}
