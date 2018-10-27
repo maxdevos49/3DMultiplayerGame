@@ -41,7 +41,7 @@ router.use('/api', (req, res) => {
 //respond with a 404 request if the document was not found
 router.use('/', (req, res) => {
     res.status(404);
-    res.render("status/404");
+    res.render("shared/404");
 });
 
 module.exports = router;
