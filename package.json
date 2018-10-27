@@ -2,8 +2,10 @@
   "name": "gamejamfall2018",
   "version": "1.0.0",
   "description": "Game Jam Project",
-  "main": "/GameJamFall2018/server.js",
+  "main": "./GameJamFall2018/server.js",
   "scripts": {
+    "production": "node ./GameJamFall2018/server.js",
+    "dev": "nodemon ./GameJamFall2018/server.js",
     "test": "nodemon ./GameJamFall2018/server.js"
   },
   "keywords": [
@@ -14,5 +16,16 @@
     "socket.io"
   ],
   "author": "Maxwell DeVos",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "node": "8.11.1",
+    "bcrypt": "^3.0.1",
+    "cookie-parser": "^1.4.3",
+    "express": "*",
+    "ip": "*",
+    "jsonwebtoken": "^8.3.0",
+    "mongodb": "*",
+    "mongoose": "*",
+    "vash": "^0.12.4"
+  }
 }
