@@ -17,16 +17,13 @@ let validation = (req, res, next) => {
         let token;
         token = req.cookies["WWW-Authenticate"];
         auth = Token.tokenCheck(token);
-
-        if (auth.ip !== req.ip) {
-            auth = {"auth": false};
-        }
-
+        
     } else {
         auth = {"auth": false};
     }
 
     res.local = auth;
+    console.log(auth);
     next();
 };
 
