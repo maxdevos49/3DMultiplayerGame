@@ -32,12 +32,22 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/about.html">About</a>
                         </li>
+                        @if(!model.auth){
                         <li class="nav-item">
                             <a class="btn btn-outline-info" href="/Account/login.html">Login</a>
                         </li>
                         <li class="nav-item">
                             <a class="btn btn-outline-info" href="/Account/register.html">Register</a>
                         </li>
+                        }else{
+                        <li class="nav-item">
+                            <a class="btn btn-outline-info" href="/Account/dashboard.html">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-info" href="/api/Account/logout">Logout</a>
+                        </li>
+                        }
+
                     </ul>
                 </div>
             </nav>
@@ -72,7 +82,7 @@
                         <ul class="list-unstyled">
                             <li><a class="link" href="/Account/login.html">Login</a></li>
                             <li><a class="link" href="/Account/register.html">Register</a></li>
-                            <li><a class="link" href="/game/stats.html">Stats</a></li>
+                            <li><a class="link" href="/game/leaderboard.html">Stats</a></li>
                             <li><a class="link" href="/Account/dashboard.html">Dashboard</a></li>
                         </ul>
                     </div>

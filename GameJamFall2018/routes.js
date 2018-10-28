@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 //middleware
-// const validation = require("./services/validation.js");
+const validation = require("./helpers/validation.js");
 
 //config settings
 const config = require('./config.js');
@@ -16,7 +16,9 @@ const ROUTES_game = require("./controllers/GameController.js");
 const ROUTES_account = require("./controllers/AccountController.js");
 
 //include api routes
-const API_index = require('./api/indexAPI.js');
+const API_index = require('./api/IndexAPI.js');
+const API_account = require('./api/AccountAPI.js');
+const API_chat = require('./api/ChatAPI.js');
 
 //connect to the database using Mongoose
 mongoose.connect(config.dbUrl, { useNewUrlParser: true });
@@ -26,7 +28,7 @@ router.use(cookieParser());
 router.use(express.static('GameJamFall2018/public'));
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
-// router.use(validation);
+router.use(validation);
 
 //document routes
 router.use('/', ROUTES_home);
@@ -35,6 +37,8 @@ router.use('/Account', ROUTES_account);
 
 //api routes
 router.use('/api', API_index);
+router.use('/api/Account', API_account);
+router.use('/api/Chat', API_chat);
 
 //respond with a 404 api request if nothing was found
 router.use('/api', (req, res) => {

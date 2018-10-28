@@ -8,12 +8,13 @@
         
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 bg-info text-white" style="margin: auto; border-radius: 5px; padding: 1vh;">
+                <div class="col-sm-7 bg-info text-white" style="margin: 100px auto; border-radius: 5px; padding: 1vh;">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm">
                                 <dl>
                                     <h4>Player Statistics:</h4>
+                                    <hr>
                                     <dt>Profile Picture: </dt>
                                     <dd class="bg-light"><img src="/images/gamepad.png"></dd>
                                     <dt>Username: </dt>

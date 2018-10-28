@@ -3,6 +3,11 @@ const api = express.Router();
 
 const config = require("../config.js");
 
+/**
+ * Get:/
+ * 
+ * responds with meta server info
+ */
 api.get("/", (req, res) => {
     res.json({
         "name": config.name,
@@ -11,12 +16,5 @@ api.get("/", (req, res) => {
     });
 });
 
-api.get("/index", (req, res) => {
-    res.json({
-        "name": config.name,
-        "apiVersion": config.apiVersion,
-        "Owner": config.owner
-    });
-});
 
 module.exports = api;

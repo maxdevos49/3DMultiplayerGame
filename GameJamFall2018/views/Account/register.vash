@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-5 bg-info text-light" style="margin: 100px auto 100px;border-radius: 5px;">
-                    <form class="form" method="POST" action="/api/register" style="padding: 3vh;">
+                    <form class="form" method="POST" action="/api/Account/register" style="padding: 3vh;">
                         <h3>Register</h3>
                         <div class="form-group">
                             <label>Username</label>

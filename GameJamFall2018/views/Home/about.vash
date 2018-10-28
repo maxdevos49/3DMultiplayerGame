@@ -5,24 +5,25 @@
         @{
             model.title = "About";
         }
-        <h3 style="color: white;">About this Game</h3>
+        <h3 class="text-white">About this Game</h3>
 
         <div class="container">
             <div class="row">
-                <div class="d-inline-block col-sm">
-                    <ul class="list-group">
-                        <li class="list-group-item">Nodejs</li>
-                        <li class="list-group-item">Socket.IO</li>
-                        <li class="list-group-item">MongoDB</li>
-                        <li class="list-group-item">Mongoose</li>
-                        <li class="list-group-item">Bootstrap</li>
-                        <li class="list-group-item">Phaser.IO</li>
-                        <li class="list-group-item">Express.JS</li>
-                        <li class="list-group-item">And many other things!</li>
+                <div class="col-sm">
+
+                    <ul class="list-group text-white">
+                        <li class="list-group-item bg-info ">Nodejs</li>
+                        <li class="list-group-item bg-info">Socket.IO</li>
+                        <li class="list-group-item bg-info">MongoDB</li>
+                        <li class="list-group-item bg-info">Mongoose</li>
+                        <li class="list-group-item bg-info">Bootstrap</li>
+                        <li class="list-group-item bg-info">Phaser.IO</li>
+                        <li class="list-group-item bg-info">Express.JS</li>
+                        <li class="list-group-item bg-info">And many other things!</li>
                     </ul>
                 </div>
 
-                <div class="d-inline-block col-sm">
+                <div class="col-sm">
                     <img src="/images/default.jpg" style="width: 100%;">
                 </div>
             </div>
