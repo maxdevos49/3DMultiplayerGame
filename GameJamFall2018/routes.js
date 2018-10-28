@@ -16,8 +16,8 @@ const ROUTES_game = require("./controllers/GameController.js");
 const ROUTES_account = require("./controllers/AccountController.js");
 
 //include api routes
-const API_index = require('./api/IndexAPI.js');
 const API_account = require('./api/AccountAPI.js');
+const API_index = require('./api/IndexAPI.js');
 const API_chat = require('./api/ChatAPI.js');
 
 //connect to the database using Mongoose
