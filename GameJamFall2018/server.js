@@ -12,6 +12,8 @@ const PORT = process.env.PORT || 8080;
 app.set('view engine', 'vash');
 app.set('views', path.join(__dirname, 'views'));
 
+console.log(__dirname);
+
 //set the routes for the server to use
 app.use('/', routes);
 
