@@ -1,12 +1,154 @@
-@html.extend('Shared/_layout', function(model){
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    @html.block('content', function(model){
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/layout.css">
+        <link rel="stylesheet" href="/css/play.css">
+        <link rel="icon" type="img/png" href="/images/gamepad.png">
+		<title>Game | Game Jam 2018</title>
+    </head>
+    <body class="bg-dark">
 
-        @{
-            model.title = "Game";
-        }
-        
-        <h1>Game</h1>
+        <header>
+            <nav class="navbar navbar-dark">
+                <a class="navbar-brand" href="/">
+                    <img src="/images/gamepad.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+                    Game Jam 2018
+                </a>
+                
+                <div>
+                    <ul class="nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Game/play.html">Play</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Game/leaderboard.html">Leaderboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-info" href="/Account/login.html">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-info" href="/Account/register.html">Register</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
 
-    })
-})
+        <div class="container col-sm-12">
+            <div class="row" style="min-height: 88vh;">
+                <div class="col-sm-9">
+                    <p>Game Goes Here</p>
+                </div>
+                 <div class="col-sm-3 bg-info">
+                    <div class="container" style="padding: 0;">
+
+                        <div class="row bg-light" style="height: 73vh; overflow: scroll;">
+                            <div class="container">
+                                
+                                <div class="row"  style="padding: 0.2vh 1vh;">
+                                    <div class="container">
+                                        <div class="row">
+                                            <img class="mr-2" src="/images/gamepad.png" alt="Generic placeholder image">
+                                            <small class="mt-2">Madmax</small>
+                                        </div>
+                                        <div class="row">
+                                            <p class="mt-0 mb-1">Yo this is a chatYo this is a chatYo this is a chatYo this is a chatYo this is a chatYo this is a chatYo this is a chatYo this is a chatYo this is a chatYo this is a chat</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <div class="row" style="padding: 0.2vh 1vh;">
+                                    <div class="container">
+                                        <div class="row">
+                                            <img class="mr-2" src="/images/gamepad.png" alt="Generic placeholder image">
+                                            <small class="mt-2">Madmax</small>
+                                        </div>
+                                        <div class="row">
+                                            <p class="mt-0 mb-1">Yo this is a chat Yo this is a chat Yo this is a chat Yo this is a chat</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <div class="row" style="padding: 0.2vh 1vh;">
+                                    <div class="container">
+                                        <div class="row">
+                                            <img class="mr-2" src="/images/gamepad.png" alt="Generic placeholder image">
+                                            <small class="mt-2">Madmax</small>
+                                        </div>
+                                        <div class="row">
+                                            <p class="mt-0 mb-1">Yo this is a chat Yo this is a chat Yo this is a chat Yo this is a chat</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <div class="row" style="padding: 0.2vh 1vh;">
+                                    <div class="container">
+                                        <div class="row">
+                                            <img class="mr-2" src="/images/gamepad.png" alt="Generic placeholder image">
+                                            <small class="mt-2">Madmax</small>
+                                        </div>
+                                        <div class="row">
+                                            <p class="mt-0 mb-1">Yo this is a chat Yo this is a chat Yo this is a chat Yo this is a chat</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <div class="row" style="padding: 0.2vh 1vh;">
+                                    <div class="container">
+                                        <div class="row">
+                                            <img class="mr-2" src="/images/gamepad.png" alt="Generic placeholder image">
+                                            <small class="mt-2">Madmax</small>
+                                        </div>
+                                        <div class="row">
+                                            <p class="mt-0 mb-1">Yo this is a chat Yo this is a chat Yo this is a chat Yo this is a chat</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <div class="row" style="padding: 0.2vh 1vh;">
+                                    <div class="container">
+                                        <div class="row">
+                                            <img class="mr-2" src="/images/gamepad.png" alt="Generic placeholder image">
+                                            <small class="mt-2">Madmax</small>
+                                        </div>
+                                        <div class="row">
+                                            <p class="mt-0 mb-1">Yo this is a chat Yo this is a chat Yo this is a chat Yo this is a chat</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="input-group" style="border-radius: none;">
+                                <textarea class="form-control" style="border-radius: 0;height: 15vh;" placeholder="Chat"></textarea>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright text-center text">
+                <p style="margin: auto;">© 2018 Copyright: Maxwell DeVos</p>
+            </div>
+        </div>
+    </body>
+</html>

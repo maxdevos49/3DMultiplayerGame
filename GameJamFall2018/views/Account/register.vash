@@ -24,7 +24,7 @@
                             <input class="form-control" name="passwordCheck" type="password" placeholder="Confirm Password" autocomplete="current-password" required>
                         </div>
                         <div>
-                            <input class="btn btn-info" type="submit" value="Sign In"> 
+                            <input class="btn btn-info" type="submit" value="Register"> 
                         </div>
                     </form>
                 </div>
