@@ -17,7 +17,7 @@ const ROUTES_account = require("./controllers/AccountController.js");
 
 //include api routes
 const API_account = require('./api/AccountAPI.js');
-// const API_index = require('./api/IndexAPI.js');
+const API_index = require('./api/IndexAPI.js');
 const API_chat = require('./api/ChatAPI.js');
 
 //connect to the database using Mongoose
@@ -36,7 +36,7 @@ router.use('/Game', ROUTES_game);
 router.use('/Account', ROUTES_account);
 
 //api routes
-// router.use('/api', API_index);
+router.use('/api', API_index);
 router.use('/api/Account', API_account);
 router.use('/api/Chat', API_chat);
 
