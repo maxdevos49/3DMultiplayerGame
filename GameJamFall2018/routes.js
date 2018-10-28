@@ -12,6 +12,8 @@ const config = require('./config.js');
 
 //include document routes
 const ROUTES_home = require("./controllers/HomeController.js");
+const ROUTES_game = require("./controllers/GameController.js");
+const ROUTES_account = require("./controllers/AccountController.js");
 
 //include api routes
 const API_index = require('./api/indexAPI.js');
@@ -28,6 +30,8 @@ router.use(bodyParser.json());
 
 //document routes
 router.use('/', ROUTES_home);
+router.use('/Game', ROUTES_game);
+router.use('/Account', ROUTES_account);
 
 //api routes
 router.use('/api', API_index);

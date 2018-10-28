@@ -5,8 +5,10 @@
         @{
             model.title = "404";
         }
-
-        <p>Page not found :(</p>
+        <div class="container col-md-6" style="margin: 100px auto 100px auto;">
+            <img src="/images/404error.png" style="width: 100%;">
+            <h3 class="text" style="text-align: center;">404: Page not found</h3>
+        </div>
 
     })
 })

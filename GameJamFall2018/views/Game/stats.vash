@@ -1,0 +1,11 @@
+@html.extend('shared/_layout', function(model){
+
+    @html.block('content', function(model){
+
+        @{
+            model.title = "Player Stats";
+        }
+        
+        <h1>Player Stats</h1>
+    })
+})

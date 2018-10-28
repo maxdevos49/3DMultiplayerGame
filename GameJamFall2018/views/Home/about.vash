@@ -1,0 +1,32 @@
+@html.extend('shared/_layout', function(model){
+
+    @html.block('content', function(model){
+
+        @{
+            model.title = "About";
+        }
+        <h3 style="color: white;">About this Game</h3>
+
+        <div class="container">
+            <div class="row">
+                <div class="d-inline-block col-sm">
+                    <ul class="list-group">
+                        <li class="list-group-item">Nodejs</li>
+                        <li class="list-group-item">Socket.IO</li>
+                        <li class="list-group-item">MongoDB</li>
+                        <li class="list-group-item">Mongoose</li>
+                        <li class="list-group-item">Bootstrap</li>
+                        <li class="list-group-item">Phaser.IO</li>
+                        <li class="list-group-item">Express.JS</li>
+                        <li class="list-group-item">And many other things!</li>
+                    </ul>
+                </div>
+
+                <div class="d-inline-block col-sm">
+                    <img src="/Images/default.jpg" style="width: 100%;">
+                </div>
+            </div>
+        </div>
+
+    })
+})
