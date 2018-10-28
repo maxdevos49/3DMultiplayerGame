@@ -40,7 +40,9 @@
             </nav>
         </header>
         <div class="container">
+
             @html.block('content')
+            
         </div>
         <footer class=" font-small bg-dark pt-4">
             <div class="container-fluid text-center text-md-left">
