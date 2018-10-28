@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 //middleware
-const validation = require("./helpers/validation.js");
+const validation = require("./helpers/Validation.js");
 
 //config settings
 const config = require('./config.js');
