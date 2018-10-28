@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon ./GameJamFall2018/server.js",
     "test": "nodemon ./GameJamFall2018/server.js",
-    "start": "node GameJamFall2018/server.js"
+    "start": "node server.js"
   },
   "keywords": [
     "node",

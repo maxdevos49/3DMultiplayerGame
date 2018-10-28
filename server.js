@@ -2,15 +2,15 @@ const express = require('express');
 const app = express();
 const http = require('http');
 const ip = require('ip');
-const routes = require('./routes.js');
-const path = require('path');
+const routes = require('./GameJamFall2018/routes.js');
+// const path = require('path');
 
 const server = http.createServer(app);
 const PORT = process.env.PORT || 8080;
 
 //view engine
 app.set('view engine', 'vash');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', './GameJamFall2018/views');
 
 console.log(__dirname);
 
