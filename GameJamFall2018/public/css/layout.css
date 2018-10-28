@@ -1,0 +1,28 @@
+.btn{
+    margin: auto 4px;
+}
+
+.nav-link{
+    color: white;
+}
+
+.nav-link:hover{
+    color: rgb(124, 122, 122);
+}
+
+.text {
+    color: white;
+}
+
+.link{
+    color: rgb(124, 122, 122);
+}
+
+.link:hover{
+    color: white;
+    text-decoration: none;
+}
+
+body{
+    margin: auto;
+}

@@ -21,7 +21,7 @@ mongoose.connect(config.dbUrl, { useNewUrlParser: true });
 
 //middleware
 router.use(cookieParser());
-router.use(express.static('/public'));
+router.use(express.static('GameJamFall2018/public'));
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 // router.use(validation);
