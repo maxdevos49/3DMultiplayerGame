@@ -3,7 +3,7 @@ const api = express.Router();
 
 const AccountModel = require("../models/AccountModel.js");
 const Token = require("../helpers/Token.js");
-const Hash = require("../Helpers/Hash.js");
+const Hash = require("../helpers/Hash.js");
 
 const config = require("../config.js");
 
