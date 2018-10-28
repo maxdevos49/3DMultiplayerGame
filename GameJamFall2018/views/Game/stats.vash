@@ -6,6 +6,36 @@
             model.title = "Player Stats";
         }
         
-        <h1>Player Stats</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 bg-info text-white" style="margin: auto; border-radius: 5px; padding: 1vh;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <dl>
+                                    <h4>Player Statistics:</h4>
+                                    <dt>Profile Picture: </dt>
+                                    <dd class="bg-light"><img src="/images/gamepad.png"></dd>
+                                    <dt>Username: </dt>
+                                    <dd>Madmax</dd>
+                                </dl>
+                            </div>
+                            <div class="col-sm">
+                                <dl>  
+                                    <dt>Rank: </dt>
+                                    <dd>1</dd>
+                                    <dt>High Score: </dt>
+                                    <dd>123</dd>
+                                    <dt>Kills: </dt>
+                                    <dd>123</dd>
+                                    <dt>Games: </dt>
+                                    <dd>15</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     })
 })

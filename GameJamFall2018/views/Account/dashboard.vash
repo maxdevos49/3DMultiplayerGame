@@ -8,7 +8,7 @@
         
         <div class="container">
             <div class="row">
-                <div class="col-md-7 bg-info text-white" style="margin: 50px auto; border-radius: 5px">
+                <div class="col-md-7 bg-info text-white" style="margin: 50px auto; border-radius: 5px; padding: 2vh;">
                     <h4>Dashboard</h4>
                     <hr>
                     <div class="row">
@@ -16,9 +16,9 @@
                         <div class="col-sm"> 
                             <h5>User Info:</h5>
                            <dl>
-                                <dt>Profile Picture</dt>
+                                <dt>Profile Picture: </dt>
                                 <dd class="bg-light"><img src="/images/gamepad.png"></dd>
-                                <dt>Username</dt>
+                                <dt>Username: </dt>
                                 <dd>Madmax</dd>
                            </dl>
                         </div>
@@ -26,13 +26,13 @@
                         <div class="col-sm">
                             <h5>Stats:</h5>
                              <dl>
-                                <dt>Rank</dt>
+                                <dt>Rank: </dt>
                                 <dd>1</dd>
-                                <dt>High Score</dt>
+                                <dt>High Score: </dt>
                                 <dd>123</dd>
-                                <dt>Kills</dt>
+                                <dt>Kills: </dt>
                                 <dd>123</dd>
-                                <dt>Games</dt>
+                                <dt>Games: </dt>
                                 <dd>15</dd>
                            </dl>
                         </div>
