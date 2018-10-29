@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="/css/play.css">
         <link rel="icon" type="img/png" href="/images/gamepad.png">
         <script src="/socket.io/socket.io.js"></script>
-        <script src="/scripts/chat.js"></script>
+        <script src="/scripts/chat/chat.js"></script>
         <script src="/scripts/game/Player.js"></script>
         <script src="/scripts/game/init.js"></script>
 		<title>Game | Game Jam 2018</title>
@@ -65,21 +65,10 @@
                  <div class="col-sm-3 bg-info">
                     <div class="container" style="padding: 0;">
 
-                        <div class="row bg-light" style="height: 73vh; overflow: scroll;">
-                            <div class="container">
+                        <div id="scroll" class="row bg-light" style="height: 73vh; overflow: scroll;">
+                            <div id="chatBoard" class="container">
                                 
-                                <div class="row"  style="padding: 0.2vh 1vh;">
-                                    <div class="container">
-                                        <div class="row">
-                                            <img class="mr-2" src="/images/gamepad.png" alt="Generic placeholder image">
-                                            <small class="mt-2">Madmax</small>
-                                        </div>
-                                        <div class="row">
-                                            <p class="mt-0 mb-1">Yo this is a chatYo this is a chatYo this is a chatYo this is a chatYo this is a chatYo this is a chatYo this is a chatYo this is a chatYo this is a chatYo this is a chat</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
+                                
 
                             </div>
                         </div>
@@ -87,7 +76,7 @@
                         <div class="row">
 
                             <div class="input-group" style="border-radius: none;">
-                                <textarea class="form-control" style="border-radius: 0;height: 15vh;" placeholder="Chat"></textarea>
+                                <textarea id="input" class="form-control" style="border-radius: 0;height: 15vh;" placeholder="Chat"></textarea>
                             </div>
 
                         </div>

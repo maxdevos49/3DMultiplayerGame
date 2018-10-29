@@ -11,11 +11,5 @@ module.exports = (socket, next) => {
     }
 
     socket.decoded = result;
-
-    // console.log()
-    // console.log(socket.cookies["WWW-Authenticate"].length);
-    // console.log(socket.decoded);
-    // console.log()
-
     next();
 };
