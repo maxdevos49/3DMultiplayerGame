@@ -23,7 +23,6 @@ let validation = (req, res, next) => {
     }
 
     res.local = auth;
-    console.log(auth);
     next();
 };
 

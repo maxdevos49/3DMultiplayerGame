@@ -6,6 +6,8 @@ const cookieParser = require('cookie-parser');
 
 //middleware
 const validation = require("./helpers/Validation.js");
+let socketValidation = require("./helpers/SocketValidation.js");
+let socketCookieParser = require("./helpers/socketCookieParser.js");
 
 //config settings
 const config = require('./config.js');
@@ -20,15 +22,28 @@ const API_account = require('./api/AccountAPI.js');
 const API_index = require('./api/IndexAPI.js');
 const API_chat = require('./api/ChatAPI.js');
 
+const SOCKET_chat = require('./sockets/ChatSockets.js');
+const SOCKET_game = require('./sockets/GameSockets.js');
+
+module.exports = function(io){
+
 //connect to the database using Mongoose
 mongoose.connect(config.dbUrl, { useNewUrlParser: true });
 
-//middleware
+//middleware for express
 router.use(cookieParser());
 router.use(express.static('GameJamFall2018/public'));
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 router.use(validation);
+
+//middleware for socket.io
+io.use(socketCookieParser);
+io.use(socketValidation);
+
+//socket routes
+io.use(SOCKET_chat(io));
+io.use(SOCKET_game(io));
 
 //document routes
 router.use('/', ROUTES_home);
@@ -52,4 +67,6 @@ router.use('/', (req, res) => {
     res.render("shared/404");
 });
 
-module.exports = router;
+return router;
+
+}

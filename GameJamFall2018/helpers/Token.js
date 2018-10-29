@@ -18,8 +18,9 @@ class Token{
         let result;
         try {
            result = jwt.sign(payload, process.env.secretKey || "SuperSecretKey");
+
        }catch(err){
-           result = false;
+        result = false;
        }
         return result;
     }
@@ -37,6 +38,7 @@ class Token{
             result = jwt.verify(token, process.env.secretKey || "SuperSecretKey");
 
         }catch(err){
+
             result = {
                 "auth": false
             };

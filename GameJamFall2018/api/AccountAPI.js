@@ -24,7 +24,6 @@ api.post("/login", (req, res) => {
 
                 let payload = {
                     auth: true,
-                    ip: req.ip,
                     username: subUsername,
                     exp: (Math.floor(Date.now() / 1000) + 60) * 24
                 };

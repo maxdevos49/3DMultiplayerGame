@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+
 //get:play.html
 router.get("/play.html", (req, res) => {
 
@@ -23,5 +24,7 @@ router.get("/leaderboard.html", (req, res) => {
     //mongoose call here
     res.render("Game/leaderboard", res.local);
 });
+
+
 
 module.exports = router;

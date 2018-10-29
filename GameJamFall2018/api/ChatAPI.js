@@ -3,6 +3,8 @@ const api = express.Router();
 
 const config = require("../config.js");
 
+
+
 /**
  * GET:/api/Chat/login
  * 
@@ -11,5 +13,7 @@ const config = require("../config.js");
 api.get("/messages", (req, res) => {
     res.json({"Implemented": false});
 });
+
+
 
 module.exports = api;
