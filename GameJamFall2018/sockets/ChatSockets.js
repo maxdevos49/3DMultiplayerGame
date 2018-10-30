@@ -1,4 +1,6 @@
 let ChatModel = require("../models/ChatModel.js");
+let EscapeHtml = require("../helpers/escapeHtml.js");
+
 module.exports = function(io){
 
     io.on('connection', (socket) => {
@@ -15,6 +17,7 @@ module.exports = function(io){
 
             }).sort({_id:-1}).limit(50);
 
+
             /**
              * Recieve new message from client, save in 
              * db and then relay back to other users
@@ -23,21 +26,17 @@ module.exports = function(io){
                 
                 let message = {
                     username: socket.decoded.username,
-                    message: data
+                    message: EscapeHtml(data),
                 }
 
                 let newMessage = new ChatModel(message)
 
                 newMessage.save((err) => {
                     if (err) throw err;
-
                     io.emit("addMessage", message);
                 });
-
-
             });
 
-            console.log(`Chat socket for ${socket.decoded.username}!`)
         }
     });
 }
