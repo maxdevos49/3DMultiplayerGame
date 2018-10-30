@@ -8,6 +8,8 @@
         <link rel="stylesheet" href="/css/layout.css">
         <link rel="stylesheet" href="/css/play.css">
         <link rel="icon" type="img/png" href="/images/gamepad.png">
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/97/three.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script src="/scripts/chat/chat.js"></script>
         <script src="/scripts/game/Player.js"></script>
@@ -58,9 +60,36 @@
         </header>
 
         <div class="container col-sm-12">
-            <div class="row" style="min-height: 88vh;">
-                <div class="col-sm-9">
-                    <p>Game Goes Here</p>
+            <div  class="row" style="min-height: 88vh;">
+                <div  id="canvas" class="col-sm-9">
+                    <script>
+                        let frame = document.getElementById("canvas");
+
+                        var scene = new THREE.Scene();
+                        var camera = new THREE.PerspectiveCamera( 75, frame.offsetWidth/frame.offsetHeight, 0.1, 1000 );
+
+                        var renderer = new THREE.WebGLRenderer();
+                        renderer.setSize( frame.offsetWidth, frame.offsetHeight );
+                        frame.insertAdjacentElement( 'afterbegin',renderer.domElement );
+
+                        var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+                        var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+                        var cube = new THREE.Mesh( geometry, material );
+                        scene.add( cube );
+
+                        camera.position.z = 5;
+
+                        var animate = function () {
+                            requestAnimationFrame( animate );
+
+                            cube.rotation.x += 0.01;
+                            cube.rotation.y += 0.01;
+
+                            renderer.render( scene, camera );
+                        };
+
+                        animate();
+                    </script>
                 </div>
                  <div class="col-sm-3 bg-info">
                     <div class="container" style="padding: 0;">
