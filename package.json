@@ -1,12 +1,12 @@
 {
-  "name": "gamejamfall2018",
+  "name": "3dmultiplayergame",
   "version": "1.0.0",
-  "description": "Game Jam Project",
-  "main": "./GameJamFall2018/server.js",
+  "description": "3D Multiplayer Game",
+  "main": "./3DMultiplayerGame/server.js",
   "scripts": {
-    "dev": "nodemon ./GameJamFall2018/server.js",
-    "test": "nodemon ./GameJamFall2018/server.js",
-    "start": "node ./GameJamFall2018/server.js"
+    "dev": "nodemon ./3DMultiplayerGame/server.js",
+    "test": "nodemon ./3DMultiplayerGame/server.js",
+    "start": "node ./3DMultiplayerGame/server.js"
   },
   "keywords": [
     "node",

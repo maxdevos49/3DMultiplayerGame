@@ -17,5 +17,5 @@ app.use('/', routes(io));
 
 //start the server
 server.listen(PORT, function () {
-    console.log(`Web Development Club running at ${ip.address()}:${PORT}`);
+    console.log(`3DMultiplayerGame running at ${ip.address()}:${PORT}`);
 });

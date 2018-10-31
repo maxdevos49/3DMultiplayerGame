@@ -24,7 +24,6 @@
                     <img src="/images/gamepad.svg" width="30" height="30" class="d-inline-block align-top" alt="">
                     Game Jam 2018
                 </a>
-                
                 <div>
                     <ul class="nav">
                         <li class="nav-item active">
@@ -93,23 +92,16 @@
                 </div>
                  <div class="col-sm-3 bg-info">
                     <div class="container" style="padding: 0;">
-
                         <div id="scroll" class="row bg-light" style="height: 73vh; overflow: scroll;">
                             <div id="chatBoard" class="container">
-                                
-                                
-
+                                <!--- This is where The chat goes!!-->
                             </div>
                         </div>
-
                         <div class="row">
-
                             <div class="input-group" style="border-radius: none;">
                                 <textarea id="input" class="form-control" style="border-radius: 0;height: 15vh;" placeholder="Chat"></textarea>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>

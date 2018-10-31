@@ -55,29 +55,18 @@ api.post("/register", (req, res) => {
     let submission = req.body;
 
     //check if passwords match
-    if(submission.password == submission.passwordCheck && submission.password.length > 9){
-        submission.password = Hash.hashString(submission.password);
-    }else {
-        submission.password = 0;
+    if(submission.password != submission.passwordCheck){
+        submission.password = " ";
     }
 
-    AccountModel.find({username: submission.username.toLowerCase()},(err, result) => {//check for duplicate user
-        
-        if(result.length > 0){
-            submission.username = null;
+    let account = new AccountModel(submission);
+
+    account.save((err) => {
+        if (err) {
+            res.redirect("/Account/register.html/?validationError=" + encodeURIComponent(err));
         }else{
-            submission.username = submission.username.toLowerCase();
+            res.redirect("/Account/login.html");
         }
-
-        let account = new AccountModel(req.body);
-
-        account.save((err) => {
-            if (err) {
-                res.redirect("/Account/register.html/?validationError=" + encodeURIComponent(err));
-            }else{
-                res.redirect("/Account/login.html");
-            }
-        });
     });
 });
 

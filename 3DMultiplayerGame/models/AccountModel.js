@@ -1,8 +1,8 @@
 //Require Mongoose
 const mongoose = require('mongoose');
-
-//Define schema class
 const Schema = mongoose.Schema;
+
+const Hash = require('../helpers/Hash.js');
 
 //new user schema
 const AccountModel = new Schema({
@@ -29,14 +29,6 @@ const AccountModel = new Schema({
         type: Number,
         default: 0
     },
-    gamesPlayed: {
-        type: Number,
-        default: 0
-    },
-    kills: {
-        type: Number,
-        default: 0
-    },
     createdOn: {
         type: Date,
         default: Date.now()
@@ -47,5 +39,21 @@ const AccountModel = new Schema({
     }
 
 });
+
+AccountModel.pre('save', (next) => {
+    let user = this;
+    user.password = Hash.hashString(user.password);
+    next();
+});
+
+AccountModel.methods.comparePassword = (candidatePassword, cb) => {
+    let auth = Hash.compareHash(candidatePassword, this.password);
+    if(err){
+        cb(err);
+    }else{
+        cb(null,auth);
+    }
+
+};
 
 module.exports = mongoose.model('Account', AccountModel);

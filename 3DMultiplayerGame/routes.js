@@ -32,7 +32,7 @@ mongoose.connect(config.dbUrl, { useNewUrlParser: true });
 
 //middleware for express
 router.use(cookieParser());
-router.use(express.static('GameJamFall2018/public'));
+router.use(express.static('3DMultiplayerGame/public'));
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 router.use(validation);
