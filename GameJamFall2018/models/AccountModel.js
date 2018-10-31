@@ -8,11 +8,12 @@ const Schema = mongoose.Schema;
 const AccountModel = new Schema({
     username: {
         type: String,
-        required: true
+        required: [true, "Username is required!"]
     },
     password: {
         type: String,
-        required: true
+        min: [9, "Password must contain atleast 9 characters and 1 special character"],
+        required: [true, "Password is required!"]
     },
     roles: [
         {

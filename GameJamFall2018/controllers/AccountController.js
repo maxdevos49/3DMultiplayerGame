@@ -2,15 +2,17 @@ const express = require('express');
 const router = express.Router();
 
 //get:register.html
-router.get("/register.html", (req, res) => {
+router.get("/register.html?:validationError", (req, res) => {
+
+    console.log(decodeURIComponent(req.query.validationError));
     
     if(!res.local.auth){//only allow if not logged in
         res.render("Account/register", res.local);
     }else{
         res.redirect("/");
     }
-
 });
+
 
 //get:login.html
 router.get("/login.html", (req, res) => {
