@@ -5,7 +5,8 @@
         @{
             model.title = "Login";
         }
-        
+       @html.raw(model.valErr)
+
         <div class="container">
             <div class="row">
                 <div class="col-sm-5 bg-info text-light" style="margin: 100px auto 100px;border-radius: 5px;">

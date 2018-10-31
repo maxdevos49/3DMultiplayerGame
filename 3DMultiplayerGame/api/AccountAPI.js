@@ -18,30 +18,27 @@ api.post("/login", (req, res) => {
     let subPassword = req.body.password;
 
     AccountModel.findOne({username: subUsername}, "password", (err, result) => {
+        if (err) {res.redirect("/Account/login.html?validationError=" + encodeURIComponent(JSON.stringify(err))); return;}
 
-        if(result){
-            if (Hash.compareHash(subPassword, result.password)) {
+        result.comparePassword(subPassword, result.password, (err, auth) => {
+            if (err) { res.redirect("/Account/login.html?validationError=" + encodeURIComponent(JSON.stringify(err))); return;}
 
-                let payload = {
-                    auth: true,
-                    username: subUsername,
-                    exp: (Math.floor(Date.now() / 1000) + 60) * 24
-                };
+            let payload = {
+                auth: true,
+                username: subUsername,
+                exp: (Math.floor(Date.now() / 1000) + 60) * 24
+            };
 
-                let token = Token.tokenGen(payload)
+            let token = Token.tokenGen(payload)
 
-                res.cookie("WWW-Authenticate", token, {
-                    maxAge: 1000 * 60 * 60 * 24,
-                    httpOnly: true
-                });
+            res.cookie("WWW-Authenticate", token, {
+                maxAge: 1000 * 60 * 60 * 24,
+                httpOnly: true
+            });
 
-                res.redirect("/Account/dashboard.html");
-            }else{
-                res.redirect("/Account/login.html");
-            }
-        } else{
-            res.redirect("/Account/login.html");  
-        }
+            res.redirect("/Account/dashboard.html");
+            return;
+        })
     });
 });
 

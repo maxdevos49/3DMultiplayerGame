@@ -6,28 +6,28 @@
             model.title = "Register";
         }
         
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-5 bg-info text-light" style="margin: 100px auto 100px;border-radius: 5px;">
-                    <form class="form" method="POST" action="/api/Account/register" style="padding: 3vh;">
-                        <h3>Register</h3>
+        @html.raw(model.valErr)
+
+        <div class="row">
+            <div class="col-sm-5 bg-info text-light" style="margin: 100px auto 100px;border-radius: 5px;">
+                <form class="form" method="POST" action="/api/Account/register" style="padding: 3vh;">
+                    <h3>Register</h3>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input class="form-control" name="username" type="text" placeholder="Username" autocomplete="username" required>
+                    </div>
                         <div class="form-group">
-                            <label>Username</label>
-                            <input class="form-control" name="username" type="text" placeholder="Username" autocomplete="username" required>
-                        </div>
-                         <div class="form-group">
-                            <label>Password</label>
-                            <input class="form-control" name="password" type="password" placeholder="Password" autocomplete="current-password" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Confirm Password</label>
-                            <input class="form-control" name="passwordCheck" type="password" placeholder="Confirm Password" autocomplete="current-password" required>
-                        </div>
-                        <div>
-                            <input class="btn btn-info" type="submit" value="Register"> 
-                        </div>
-                    </form>
-                </div>
+                        <label>Password</label>
+                        <input class="form-control" name="password" type="password" placeholder="Password" autocomplete="current-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input class="form-control" name="passwordCheck" type="password" placeholder="Confirm Password" autocomplete="current-password" required>
+                    </div>
+                    <div>
+                        <input class="btn btn-info" type="submit" value="Register"> 
+                    </div>
+                </form>
             </div>
         </div>
     })

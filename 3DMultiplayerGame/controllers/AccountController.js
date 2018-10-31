@@ -1,10 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const Shared = require("../helpers/Shared.js");
 
-//get:register.html
+/**
+ * GET:/Account/register.html
+ */
 router.get("/register.html?:validationError", (req, res) => {
-
-    console.log(decodeURIComponent(req.query.validationError));
+    
+    let valErr = req.query.validationError;
+    if (typeof(valErr) != "undefined"){
+        res.local.valErr = Shared.JsonifyValididationError(decodeURIComponent(valErr));
+    }
     
     if(!res.local.auth){//only allow if not logged in
         res.render("Account/register", res.local);
@@ -13,9 +19,15 @@ router.get("/register.html?:validationError", (req, res) => {
     }
 });
 
+/**
+ * GET:/Account/login.html
+ */
+router.get("/login.html?:validationError", (req, res) => {
 
-//get:login.html
-router.get("/login.html", (req, res) => {
+    let valErr = req.query.validationError;
+    if (typeof (valErr) != "undefined") {
+        res.local.valErr = Shared.JsonifyValididationError(decodeURIComponent(valErr));
+    }
 
     if(!res.local.auth){//only allow if not logged in
         res.render("Account/login", res.local);
@@ -25,8 +37,15 @@ router.get("/login.html", (req, res) => {
 
 });
 
-//get:dashboard.html
-router.get("/dashboard.html", (req, res) => {
+/**
+ * GET:/Account/dashboard.html
+ */
+router.get("/dashboard.html?:validationError", (req, res) => {
+
+    let valErr = req.query.validationError;
+    if (typeof (valErr) != "undefined") {
+        res.local.valErr = Shared.JsonifyValididationError(decodeURIComponent(valErr));
+    }
 
     if(res.local.auth){//only allow if logged in
         res.render("Account/dashboard", res.local);

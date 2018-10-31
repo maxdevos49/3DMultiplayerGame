@@ -5,8 +5,6 @@ module.exports = function(io){
         
 
         if(socket.decoded.auth){
-            console.log(`Game socket for ${socket.decoded.username}!`)
-            //everything goes here
 
         }
     });

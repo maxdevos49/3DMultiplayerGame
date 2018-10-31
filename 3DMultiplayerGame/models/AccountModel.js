@@ -8,11 +8,12 @@ const Hash = require('../helpers/Hash.js');
 const AccountModel = new Schema({
     username: {
         type: String,
+        minlength: [3, "username must contain atleast 3 characters."],
         required: [true, "Username is required!"]
     },
     password: {
         type: String,
-        min: [9, "Password must contain atleast 9 characters and 1 special character"],
+        minlength: [9, "Password must contain atleast 9 characters and 1 special character."],
         required: [true, "Password is required!"]
     },
     roles: [
@@ -40,16 +41,19 @@ const AccountModel = new Schema({
 
 });
 
-AccountModel.pre('save', (next) => {
-    let user = this;
-    user.password = Hash.hashString(user.password);
+AccountModel.post('validate', (doc, next) => {
+
+    doc.password = Hash.hashString(doc.password);
+    doc.roles = ["user"]
+
     next();
 });
 
-AccountModel.methods.comparePassword = (candidatePassword, cb) => {
-    let auth = Hash.compareHash(candidatePassword, this.password);
-    if(err){
-        cb(err);
+AccountModel.methods.comparePassword = (candidatePassword, password, cb) => {
+
+    let auth = Hash.compareHash(candidatePassword, password);
+    if(!auth){
+        cb({"validationError":{"password":"Incorrect password or username!"}});
     }else{
         cb(null,auth);
     }

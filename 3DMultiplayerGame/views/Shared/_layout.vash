@@ -53,7 +53,6 @@
             </nav>
         </header>
         <div class="container">
-
             @html.block('content')
             
         </div>
