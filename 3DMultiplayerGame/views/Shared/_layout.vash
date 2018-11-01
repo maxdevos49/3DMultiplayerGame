@@ -8,14 +8,14 @@
         <link rel="stylesheet" href="/css/layout.css">
 
         <link rel="icon" type="img/png" href="/images/gamepad.png">
-		<title>@model.title | Game Jam 2018</title>
+		<title>@model.title | 3D Multiplayer Game</title>
     </head>
     <body class="bg-dark col-md-10">
         <header>
             <nav class="navbar navbar-dark bg-dark">
                 <a class="navbar-brand" href="/">
                     <img src="/images/gamepad.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-                    Game Jam 2018
+                    3D Multiplayer Game
                 </a>
                 
                 <div>
@@ -60,8 +60,8 @@
             <div class="container-fluid text-center text-md-left">
                 <div class="row">
                     <div class="col-md-6 mt-md-0 mt-3">
-                        <h5 class="text-uppercase text">Game Jam 2018</h5>
-                        <p class="text">Quick Project for the 2018 Iowa State Game Development Club game jam written in javascript using the phaser game engine and a nodejs backend.</p>
+                        <h5 class="text-uppercase text">3D Multiplayer Game</h5>
+                        <p class="text">Quick Project that was started at the 2018 Iowa State Game Development Club game jam written in javascript and a nodejs backend.</p>
                     </div>
 
                     <hr class="clearfix w-100 d-md-none pb-3">
@@ -72,7 +72,7 @@
                             <li><a class="link" href="/">Home</a></li>
                             <li><a class="link" href="/game/play.html">Play</a></li>
                             <li><a class="link" href="/about.html">About</a></li>
-                            <li><a class="link" href="https://github.com/maxdevos49/GameJamFall2018">Github</a></li>
+                            <li><a class="link" href="https://github.com/maxdevos49/3DMultiplayerGame">Github</a></li>
                         </ul>
                     </div>
                     
@@ -88,7 +88,7 @@
                 </div>
             </div>
             <div class="footer-copyright text-center py-3 text">
-                © 2018 Copyright: Maxwell DeVos
+                © 2018 Copyright: Maxwell DeVos & Mason Timmerman
             </div>
         </footer>
 

@@ -6,11 +6,8 @@ const Shared = require("../helpers/Shared.js");
  * GET:/Account/register.html
  */
 router.get("/register.html?:validationError", (req, res) => {
-    
-    let valErr = req.query.validationError;
-    if (typeof(valErr) != "undefined"){
-        res.local.valErr = Shared.JsonifyValididationError(decodeURIComponent(valErr));
-    }
+    //make middleware???
+    res.local.valErr = Shared.JsonifyValididationError(req.query.validationError);
     
     if(!res.local.auth){//only allow if not logged in
         res.render("Account/register", res.local);
@@ -24,10 +21,7 @@ router.get("/register.html?:validationError", (req, res) => {
  */
 router.get("/login.html?:validationError", (req, res) => {
 
-    let valErr = req.query.validationError;
-    if (typeof (valErr) != "undefined") {
-        res.local.valErr = Shared.JsonifyValididationError(decodeURIComponent(valErr));
-    }
+    res.local.valErr = Shared.JsonifyValididationError(req.query.validationError);
 
     if(!res.local.auth){//only allow if not logged in
         res.render("Account/login", res.local);
@@ -42,10 +36,7 @@ router.get("/login.html?:validationError", (req, res) => {
  */
 router.get("/dashboard.html?:validationError", (req, res) => {
 
-    let valErr = req.query.validationError;
-    if (typeof (valErr) != "undefined") {
-        res.local.valErr = Shared.JsonifyValididationError(decodeURIComponent(valErr));
-    }
+    res.local.valErr = Shared.JsonifyValididationError(req.query.validationError);
 
     if(res.local.auth){//only allow if logged in
         res.render("Account/dashboard", res.local);

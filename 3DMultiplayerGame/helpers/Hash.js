@@ -8,10 +8,8 @@ class Hash {
      * @param {*} str
      */
     static hashString(str){
-
         let salt = Bcyrpt.genSaltSync(process.env.SALT || 5);
         return Bcyrpt.hashSync(str, salt);
-
     }
 
     /**
@@ -23,7 +21,6 @@ class Hash {
      */
     static compareHash(str, hash){
         return Bcyrpt.compareSync(str, hash);
-
     }
 
 }

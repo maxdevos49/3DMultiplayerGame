@@ -3,9 +3,7 @@ const api = express.Router();
 
 const AccountModel = require("../models/AccountModel.js");
 const Token = require("../helpers/Token.js");
-const Hash = require("../helpers/Hash.js");
 
-const config = require("../config.js");
 
 /**
  * POST:/api/Account/login
@@ -14,31 +12,43 @@ const config = require("../config.js");
  */
 api.post("/login", (req, res) => {
 
-    let subUsername = req.body.username.toLowerCase();
-    let subPassword = req.body.password;
+    let password = {};//for comparing
+    let subUsername = req.body.username;
+    password.p1 = req.body.password;
 
     AccountModel.findOne({username: subUsername}, "password", (err, result) => {
-        if (err) {res.redirect("/Account/login.html?validationError=" + encodeURIComponent(JSON.stringify(err))); return;}
+        if(err) throw err;
 
-        result.comparePassword(subPassword, result.password, (err, auth) => {
-            if (err) { res.redirect("/Account/login.html?validationError=" + encodeURIComponent(JSON.stringify(err))); return;}
+        if (!result) { 
+            return res.redirect("/Account/login.html?validationError=" + encodeURIComponent("username:Username could not be identified!,password:Incorrect password!"));
+        }else{
 
-            let payload = {
-                auth: true,
-                username: subUsername,
-                exp: (Math.floor(Date.now() / 1000) + 60) * 24
-            };
-
-            let token = Token.tokenGen(payload)
-
-            res.cookie("WWW-Authenticate", token, {
-                maxAge: 1000 * 60 * 60 * 24,
-                httpOnly: true
+            password.p2 = result.password;
+            let userAcount = new AccountModel({
+                password: result.password
             });
 
-            res.redirect("/Account/dashboard.html");
-            return;
-        })
+            userAcount.comparePassword(password, (err, auth) => {
+                if (!err) { 
+                    return res.redirect("/Account/login.html?validationError=" + encodeURIComponent("username:Username could not be identified!,password:Incorrect password!")); 
+                }else{
+
+                    let payload = {
+                        auth: true,
+                        username: subUsername,
+                        exp: (Math.floor(Date.now() / 1000) + 60) * 24
+                    };
+        
+                    let token = Token.tokenGen(payload)
+        
+                    res.cookie("WWW-Authenticate", token, {
+                        maxAge: 1000 * 60 * 60 * 24,
+                        httpOnly: true
+                    });
+                    return res.redirect("/Account/dashboard.html");
+                }
+            })
+        }
     });
 });
 
@@ -52,9 +62,7 @@ api.post("/register", (req, res) => {
     let submission = req.body;
 
     //check if passwords match
-    if(submission.password != submission.passwordCheck){
-        submission.password = " ";
-    }
+    submission.password = (submission.password === submission.passwordCheck) ? submission.password : " ";
 
     let account = new AccountModel(submission);
 

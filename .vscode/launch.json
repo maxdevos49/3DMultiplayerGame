@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/GameJamFall2018/server.js"
+            "program": "${workspaceFolder}/3DMultiplayerGame/server.js"
         }
     ]
 }

@@ -1,14 +1,14 @@
-//Require Mongoose
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const bcrypt = require("bcrypt");
+const Hash = require("../helpers/Hash.js");
 
-const Hash = require('../helpers/Hash.js');
 
 //new user schema
 const AccountModel = new Schema({
     username: {
         type: String,
-        minlength: [3, "username must contain atleast 3 characters."],
+        minlength: [3, "Username must contain atleast 3 characters."],
         required: [true, "Username is required!"]
     },
     password: {
@@ -49,15 +49,11 @@ AccountModel.post('validate', (doc, next) => {
     next();
 });
 
-AccountModel.methods.comparePassword = (candidatePassword, password, cb) => {
-
-    let auth = Hash.compareHash(candidatePassword, password);
-    if(!auth){
-        cb({"validationError":{"password":"Incorrect password or username!"}});
-    }else{
-        cb(null,auth);
-    }
-
+AccountModel.methods.comparePassword = (passwords, cb) => {
+    bcrypt.compare(passwords.p1, passwords.p2, (err, isMatch) => {
+        if (!err) return cb(err);
+        cb(null, isMatch);
+    });
 };
 
 module.exports = mongoose.model('Account', AccountModel);
