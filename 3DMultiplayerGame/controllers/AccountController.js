@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Shared = require("../helpers/Shared.js");
+const AccountModel = require("../models/AccountModel.js");
 
 /**
  * GET:/Account/register.html
@@ -20,7 +21,7 @@ router.get("/register.html?:validationError", (req, res) => {
  * GET:/Account/login.html
  */
 router.get("/login.html?:validationError", (req, res) => {
-
+    console.log(AccountModel.schema.obj);//bingo bango bongo the answer to all my questions <------
     res.local.valErr = Shared.JsonifyValididationError(req.query.validationError);
 
     if(!res.local.auth){//only allow if not logged in
