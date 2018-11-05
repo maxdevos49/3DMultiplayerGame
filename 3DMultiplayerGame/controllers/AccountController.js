@@ -21,7 +21,8 @@ router.get("/register.html?:validationError", (req, res) => {
  * GET:/Account/login.html
  */
 router.get("/login.html?:validationError", (req, res) => {
-    console.log(AccountModel.schema.obj);//bingo bango bongo the answer to all my questions <------
+    console.log(JSON.stringify(AccountModel.schema.tree, null, 4));//bingo bango bongo the answer to all my questions <------
+    //  console.log(JSON.stringify(AccountModel.schema.obj, null, 4));//bingo bango bongo the answer to all my questions <------
     res.local.valErr = Shared.JsonifyValididationError(req.query.validationError);
 
     if(!res.local.auth){//only allow if not logged in
