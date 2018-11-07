@@ -25,6 +25,15 @@
                                 <label>@model.valErr.password</label>
                             </div>
                         </div>
+                        
+                        <div class="form-group">
+
+                         @html.extend("Shared/vashHelpers")
+                         
+
+
+
+                        </div>
                         <div>
                             <input class="btn btn-info" type="submit" value="Sign In"> 
                         </div>

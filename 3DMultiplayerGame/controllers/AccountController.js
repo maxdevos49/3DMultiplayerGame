@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Shared = require("../helpers/Shared.js");
 const AccountModel = require("../models/AccountModel.js");
+const vash = require("vash");
 
 /**
  * GET:/Account/register.html
@@ -21,7 +22,8 @@ router.get("/register.html?:validationError", (req, res) => {
  * GET:/Account/login.html
  */
 router.get("/login.html?:validationError", (req, res) => {
-    console.log(JSON.stringify(AccountModel.schema.tree, null, 4));//bingo bango bongo the answer to all my questions <------
+
+    //console.log(JSON.stringify(AccountModel.schema.tree, null, 4));//bingo bango bongo the answer to all my questions <------
     //  console.log(JSON.stringify(AccountModel.schema.obj, null, 4));//bingo bango bongo the answer to all my questions <------
     res.local.valErr = Shared.JsonifyValididationError(req.query.validationError);
 

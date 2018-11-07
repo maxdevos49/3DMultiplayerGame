@@ -7,6 +7,7 @@ const Hash = require("../helpers/Hash.js");
 //new user schema
 const AccountModel = new Schema({
     username: {
+        display: "Username",
         type: String,
         minlength: [3, "Username must contain atleast 3 characters."],
         required: [true, "Username is required!"]
