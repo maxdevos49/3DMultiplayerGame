@@ -2,7 +2,7 @@ const express = require('express');
 const api = express.Router();
 
 const AccountModel = require("../models/AccountModel.js");
-const Token = require("../helpers/Token.js");
+const Shared = require("../helpers/Shared.js");
 
 
 /**
@@ -12,44 +12,32 @@ const Token = require("../helpers/Token.js");
  */
 api.post("/login", (req, res) => {
 
-    let password = {};//for comparing
-    let subUsername = req.body.username;
-    password.p1 = req.body.password;
+    let password = req.body.password;
+    let username = req.body.username;
 
-    AccountModel.findOne({username: subUsername}, "password", (err, result) => {
-        if(err) throw err;
+    AccountModel.ValidateLogin(username, password, (err) => {
+        if (err) {
+            return res.redirect("/Account/login.html?validationError=" + encodeURIComponent("username: Username could not be identified!, password: Incorrect password!"));
+        } else {
 
-        if (!result) { 
-            return res.redirect("/Account/login.html?validationError=" + encodeURIComponent("username:Username could not be identified!,password:Incorrect password!"));
-        }else{
+            let payload = {
+                auth: true,
+                username: username,
+                exp: (Math.floor(Date.now() / 1000) + 60) * 24
+            };
 
-            password.p2 = result.password;
-            let userAcount = new AccountModel({
-                password: result.password
+            let token = Shared.tokenGen(payload)
+
+            res.cookie("WWW-Authenticate", token, {
+                maxAge: 1000 * 60 * 60 * 24,
+                httpOnly: true
             });
-
-            userAcount.comparePassword(password, (err, auth) => {
-                if (!err) { 
-                    return res.redirect("/Account/login.html?validationError=" + encodeURIComponent("username:Username could not be identified!,password:Incorrect password!")); 
-                }else{
-
-                    let payload = {
-                        auth: true,
-                        username: subUsername,
-                        exp: (Math.floor(Date.now() / 1000) + 60) * 24
-                    };
-        
-                    let token = Token.tokenGen(payload)
-        
-                    res.cookie("WWW-Authenticate", token, {
-                        maxAge: 1000 * 60 * 60 * 24,
-                        httpOnly: true
-                    });
-                    return res.redirect("/Account/dashboard.html");
-                }
-            })
+            
+            return res.redirect("/Account/dashboard.html");
         }
-    });
+
+    })
+
 });
 
 /**
@@ -61,15 +49,12 @@ api.post("/register", (req, res) => {
 
     let submission = req.body;
 
-    //check if passwords match
-    submission.password = (submission.password === submission.passwordCheck) ? submission.password : " ";
-
     let account = new AccountModel(submission);
 
     account.save((err) => {
         if (err) {
             res.redirect("/Account/register.html/?validationError=" + encodeURIComponent(err));
-        }else{
+        } else {
             res.redirect("/Account/login.html");
         }
     });
@@ -91,7 +76,7 @@ api.get("/logout", (req, res) => {
  * responds with meta information about their profile and stats
  */
 api.get("/dashboard", (req, res) => {
-    res.json({"Implemented": false});
+    res.json({ "Implemented": false });
 });
 
 

@@ -1,5 +1,5 @@
 let ChatModel = require("../models/ChatModel.js");
-let EscapeHtml = require("../helpers/escapeHtml.js");
+let Shared = require("../helpers/Shared.js");
 
 module.exports = function(io){
 
@@ -26,7 +26,7 @@ module.exports = function(io){
                 
                 let message = {
                     username: socket.decoded.username,
-                    message: EscapeHtml(data),
+                    message: Shared.escapeHtml(data),
                 }
 
                 let newMessage = new ChatModel(message)

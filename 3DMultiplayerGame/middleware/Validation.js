@@ -1,4 +1,4 @@
-const Token = require("./Token.js");
+const Shared = require("../helpers/Shared.js");
 
 /**
  * Function to validate a user on a request
@@ -16,7 +16,7 @@ let validation = (req, res, next) => {
 
         let token;
         token = req.cookies["WWW-Authenticate"];
-        auth = Token.tokenCheck(token);
+        auth = Shared.tokenCheck(token);
         
     } else {
         auth = {"auth": false};

@@ -1,5 +1,0 @@
-
-vash.helpers.ValidationMessageFor = function(prop){
-    <span for="Test" class="Test">Wrong Test</span>
-}
-
