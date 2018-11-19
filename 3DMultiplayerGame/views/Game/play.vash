@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/layout.css">
+        <link rel="stylesheet" href="/css/play.css">
+        <link rel="icon" type="img/png" href="/images/gamepad.png">
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/97/three.js"></script>
+
+        <script src="/socket.io/socket.io.js"></script>
+        
+        <script src="/scripts/chat/chat.js"></script>
+        <script src="/scripts/game/Player.js"></script>
+        <script src="/scripts/game/init.js"></script>
+		<title>Game | Game Jam 2018</title>
+    </head>
+    <body class="bg-dark" onload="init()">
+
+        <header>
+            <nav class="navbar navbar-dark">
+                <a class="navbar-brand" href="/">
+                    <img src="/images/gamepad.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+                    Game Jam 2018
+                </a>
+                <div>
+                    <ul class="nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Game/play.html">Play</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Game/leaderboard.html">Leaderboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/about.html">About</a>
+                        </li>
+                          @if(!model.auth){
+                        <li class="nav-item">
+                            <a class="btn btn-outline-info" href="/Account/login.html">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-info" href="/Account/register.html">Register</a>
+                        </li>
+                        }else{
+                        <li class="nav-item">
+                            <a class="btn btn-outline-info" href="/Account/dashboard.html">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-info" href="/Account/logout.html">Logout</a>
+                        </li>
+                        }
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container col-sm-12">
+            <div  class="row" style="min-height: 88vh;">
+                <div  id="canvas" class="col-sm-9">
+                    <script>
+                        let frame = document.getElementById("canvas");
+
+                        var scene = new THREE.Scene();
+                        var camera = new THREE.PerspectiveCamera( 75, frame.offsetWidth/frame.offsetHeight, 0.1, 1000 );
+
+                        var renderer = new THREE.WebGLRenderer();
+                        renderer.setSize( frame.offsetWidth, frame.offsetHeight );
+                        frame.insertAdjacentElement( 'afterbegin',renderer.domElement );
+
+                        var geometry = new THREE.BoxGeometry( 1, 2, 1 );
+                        var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+                        var cube = new THREE.Mesh( geometry, material );
+                        scene.add( cube );
+
+                        camera.position.z = 5;
+
+                        var animate = function () {
+                            requestAnimationFrame( animate );
+
+                            cube.rotation.x += 0.01;
+                            cube.rotation.y += 0.01;
+
+                            renderer.render( scene, camera );
+                        };
+
+                        animate();
+                    </script>
+                </div>
+                 <div class="col-sm-3 bg-info">
+                    <div class="container" style="padding: 0;">
+                        <div id="scroll" class="row bg-light" style="height: 73vh; overflow: scroll;">
+                            <div id="chatBoard" class="container">
+                                <!--- This is where The chat goes!!-->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-group" style="border-radius: none;">
+                                <textarea id="input" class="form-control" style="border-radius: 0;height: 15vh;" placeholder="Chat"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright text-center text">
+                <p style="margin: auto;">© 2018 Copyright: Maxwell DeVos</p>
+            </div>
+        </div>
+    </body>
+</html>
