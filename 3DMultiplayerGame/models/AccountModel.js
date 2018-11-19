@@ -4,16 +4,14 @@ const Shared = require("../helpers/Shared.js");
 
 const AccountModel = new Schema({
     username: {
-        key: "username",
-        name: "Username",
+        display: "Username",
         type: String,
         minlength: 3,
         maxlength: 20,
         required: true
     },
     password: {
-        key: "password",
-        name: "Password",
+        display: "Password",
         type: String,
         minlength: 8,
         maxlength: 50,
@@ -47,8 +45,9 @@ const AccountModel = new Schema({
 /**
  * Virtual property used for comparing passwords upon registration
  */
-AccountModel.virtual('passwordConfirmation').key = "passwordConfirmation";
-AccountModel.virtual('passwordConfirmation').name = "Password Confirmation";
+AccountModel.virtual('passwordConfirmation').display = "Password Confirmation";
+AccountModel.virtual('passwordConfirmation').matches = "password";
+
 AccountModel.virtual('passwordConfirmation')
     .get(function () {
         return this._passwordConfirmation;
@@ -108,13 +107,13 @@ AccountModel.statics.ValidateLogin = function (username, password, callback) {
  */
 AccountModel.statics.GetModel = function (res) {
 
-    //mount model object
-    let model;
-    
-    model = AccountModel.tree;
+    let model = {};
 
-    //mount auth information
-    model.auth = res.local.auth;
+    for(let key in AccountModel.tree){
+        AccountModel.tree[key].key = key;
+    }
+
+    Object.assign(model, AccountModel.tree, res.local.auth)
 
     return model;
 }

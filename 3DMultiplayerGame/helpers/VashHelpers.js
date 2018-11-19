@@ -15,7 +15,7 @@ module.exports = function () {
             <label 
               for="${model.key}" 
               ${processAttributes(attributes)}>
-                ${model.name}
+                ${model.display}
             </label>
         `);
     };
@@ -101,7 +101,7 @@ module.exports = function () {
                 Object.assign(result, {"data-val-required": property.required[1]});
            }else{
                //use generic message
-               Object.assign(result, {"data-val-required": `${property.name || property.key} is required!`});
+               Object.assign(result, {"data-val-required": `${property.display || property.key} is required!`});
            }
         }
 
@@ -120,7 +120,7 @@ module.exports = function () {
                //use generic message
                Object.assign(result, {
                     "data-val-minlength-min": property.minlength,
-                    "data-val-minlength":`${property.name || property.key} must be atleast ${property.minlength} characters long!`
+                    "data-val-minlength":`${property.display || property.key} must be atleast ${property.minlength} characters long!`
                 });
            }
         }
@@ -140,13 +140,54 @@ module.exports = function () {
                //use generic message
                Object.assign(result, {
                     "data-val-maxlength-max": property.maxlength,
-                    "data-val-maxlength":`${property.name || property.key} cannot exceed ${property.maxlength} characters long!`
+                    "data-val-maxlength":`${property.display || property.key} cannot exceed ${property.maxlength} characters long!`
                 });
            }
         }
 
-        /**
-         * 
+        //Compare
+        //    data-val-equalto="Error message"
+        //    data-val-equalto-other="The name of the other field"
+        if(typeof(property.matches) !== "undefined"){
+            //check model format
+            if(Array.isArray(property.matches)){
+                //use custom message
+                Object.assign(result, {
+                    "data-val-equalto-other": property.matches[0],
+                    "data-val-equalto": property.matches[1]
+                });
+           }else{
+               //use generic message
+               Object.assign(result, {
+                    "data-val-equalto-other": property.matches,
+                    "data-val-equalto":`${property.display || property.key} must match ${property.matches}!`
+                });
+           }
+        }
+
+
+        /*
+            //TODO
+            these below all need added and possibly more too
+
+            CreditCard
+            data-val-creditcard="Error message"
+
+            EmailAddress
+            data-val-email="Error message"
+
+            Range
+            data-val-range="Error message"
+            data-val-range-max="Max value"
+            data-val-range-min="Min value"
+
+            RegularExpression
+            data-val-regex="Error message"
+            data-val-regex-pattern="The regular expression (e.g. ^[a-z]+$)"
+
+            StringLength
+            data-val-length="Error message"
+            data-val-length-max="Maximum number of characters"
          */
         
         
