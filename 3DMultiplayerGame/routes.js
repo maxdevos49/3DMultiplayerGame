@@ -8,7 +8,6 @@ const cookieParser = require('cookie-parser');
 const validation = require("./middleware/Validation.js");
 const socketValidation = require("./middleware/SocketValidation.js");
 const socketCookieParser = require("./middleware/socketCookieParser.js");
-const parseValidationErrors = require("./middleware/parseValidationErrors.js");
 
 //config settings
 const config = require('./config.js');
@@ -37,7 +36,6 @@ router.use(express.static('3DMultiplayerGame/public'));
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 router.use(validation);
-router.use(parseValidationErrors);
 
 //middleware for socket.io
 io.use(socketCookieParser);

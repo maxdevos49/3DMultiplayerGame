@@ -7,15 +7,17 @@ const AccountModel = new Schema({
         key: "username",
         name: "Username",
         type: String,
-        minlength: [3, "Username must contain atleast 3 characters."],
-        required: [true, "Username is required!"]
+        minlength: 3,
+        maxlength: 20,
+        required: true
     },
     password: {
         key: "password",
         name: "Password",
         type: String,
-        minlength: [9, "Password must contain atleast 9 characters and 1 special character."],
-        required: [true, "Password is required!"]
+        minlength: 8,
+        maxlength: 50,
+        required: true
     },
     roles: [
         {
@@ -102,13 +104,19 @@ AccountModel.statics.ValidateLogin = function (username, password, callback) {
 }
 
 /**
- * Concatenates the schema onto the local response property
+ * Combines the Model, Authorization and the validationError objects into one for the view to use
  */
-AccountModel.statics.GetModel = function (data) {
-    let result = AccountModel.tree;
-    result.valErr = data.valErr;
-    result.auth = data.auth;
-    return result;
+AccountModel.statics.GetModel = function (res) {
+
+    //mount model object
+    let model;
+    
+    model = AccountModel.tree;
+
+    //mount auth information
+    model.auth = res.local.auth;
+
+    return model;
 }
 
 module.exports = mongoose.model('Account', AccountModel);

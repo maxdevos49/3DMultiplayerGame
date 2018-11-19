@@ -13,17 +13,17 @@
                     <div class="form-group">
                         @html.LabelFor(model.username)
                         @html.TextBoxFor(model.username, { class: "form-control", autocomplete: "username"})
-                        @html.ValidationMessageFor(model.username, model.valErr.username)
+                        @html.ValidationMessageFor(model.username)
                     </div>
                     <div class="form-group">
                         @html.LabelFor(model.password)
                         @html.PasswordBoxFor(model.password, { class: "form-control", autocomplete: "off"})
-                        @html.ValidationMessageFor(model.password, model.valErr.password)
+                        @html.ValidationMessageFor(model.password)
                     </div>
                     <div class="form-group">
                         @html.LabelFor(model.passwordConfirmation)
                         @html.PasswordBoxFor(model.passwordConfirmation, { class: "form-control", autocomplete: "off"})
-                        @html.ValidationMessageFor(model.passwordConfirmation, model.valErr.passwordConfirmation)
+                        @html.ValidationMessageFor(model.passwordConfirmation)
                     </div>
                     <div>
                         <input class="btn btn-info" type="submit" value="Register"> 
