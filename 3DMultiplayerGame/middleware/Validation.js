@@ -19,7 +19,7 @@ let validation = (req, res, next) => {
         auth = Shared.tokenCheck(token);
         
     } else {
-        auth = {"auth": false};
+        auth = {auth: false, role: "public"};
     }
 
     res.local = auth;

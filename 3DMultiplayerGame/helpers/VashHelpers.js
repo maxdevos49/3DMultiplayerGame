@@ -83,7 +83,7 @@ module.exports = function () {
     }
 
     /**
-     * Checks model for any validations and then creates an attribute object 
+     * Helper function that checks model for any validations and then creates an attribute object 
      * @param {*} property
      * @returns an object representing attributes needed for jquery unobtrusive validation
      */
@@ -145,9 +145,9 @@ module.exports = function () {
            }
         }
 
-        //Compare
-        //    data-val-equalto="Error message"
-        //    data-val-equalto-other="The name of the other field"
+        /**
+         * Equal To
+         */
         if(typeof(property.matches) !== "undefined"){
             //check model format
             if(Array.isArray(property.matches)){
@@ -165,32 +165,39 @@ module.exports = function () {
            }
         }
 
+        /**
+         * Credit Card
+         *  data-val-creditcard="Error message"
+         */
 
-        /*
-            //TODO
-            these below all need added and possibly more too
 
-            CreditCard
-            data-val-creditcard="Error message"
+        /**
+         * Email
+         *  data-val-email="Error message"
+         */
 
-            EmailAddress
-            data-val-email="Error message"
 
-            Range
-            data-val-range="Error message"
-            data-val-range-max="Max value"
-            data-val-range-min="Min value"
-
-            RegularExpression
-            data-val-regex="Error message"
-            data-val-regex-pattern="The regular expression (e.g. ^[a-z]+$)"
-
-            StringLength
-            data-val-length="Error message"
-            data-val-length-max="Maximum number of characters"
+        /**
+         * Range
+         *  data-val-range="Error message"
+         *  data-val-range-max="Max value"
+         *  data-val-range-min="Min value"
          */
         
+
+        /**
+         * Regular Expression
+         *  data-val-regex="Error message"
+         *  data-val-regex-pattern="The regular expression (e.g. ^[a-z]+$)"
+         */
         
+
+        /**
+         * String Length
+         *  data-val-length="Error message"
+         *  data-val-length-max="Maximum number of characters"
+         */
+
 
         return result;
 

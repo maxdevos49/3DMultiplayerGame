@@ -4,7 +4,7 @@ const api = express.Router();
 const config = require("../config.js");
 
 /**
- * Get:/
+ * Get:/api/
  * 
  * responds with meta server info
  */

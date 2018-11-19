@@ -14,8 +14,8 @@ class Shared {
    * @param {*} str
    */
   static hashString(str) {
-    let salt = Bcyrpt.genSaltSync(process.env.SALT || 5);
-    return Bcyrpt.hashSync(str, salt);
+    let salt = bcyrpt.genSaltSync(process.env.SALT || 5);
+    return bcyrpt.hashSync(str, salt);
   }
 
   /**

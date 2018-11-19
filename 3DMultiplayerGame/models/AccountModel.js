@@ -113,7 +113,7 @@ AccountModel.statics.GetModel = function (res) {
         AccountModel.tree[key].key = key;
     }
 
-    Object.assign(model, AccountModel.tree, res.local.auth)
+    Object.assign(model, AccountModel.tree, res.local)
 
     return model;
 }

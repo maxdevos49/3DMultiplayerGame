@@ -3,8 +3,6 @@ const api = express.Router();
 
 const config = require("../config.js");
 
-
-
 /**
  * GET:/api/Chat/login
  * 
