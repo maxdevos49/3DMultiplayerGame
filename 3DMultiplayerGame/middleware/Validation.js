@@ -22,7 +22,7 @@ let validation = (req, res, next) => {
         auth = {auth: false, role: "public"};
     }
 
-    res.local = auth;
+    res.user = auth;
     next();
 };
 

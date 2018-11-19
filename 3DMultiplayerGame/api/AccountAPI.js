@@ -1,9 +1,6 @@
 const express = require('express');
 const api = express.Router();
 
-const AccountModel = require("../models/AccountModel.js");
-const Shared = require("../helpers/Shared.js");
-
 /**
  * GET:/api/Account/dashboard
  * 
