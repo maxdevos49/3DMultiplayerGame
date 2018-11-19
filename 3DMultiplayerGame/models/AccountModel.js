@@ -91,13 +91,14 @@ AccountModel.statics.ValidateLogin = function (username, password, callback) {
 
     this.findOne({ username: username }, "password", function (err, data) {
         if (err) throw err;
-        if(!data){
-            return callback(true);
+        if (!data) {
+            
+            return callback({error: {username: {properties: {message: "Username is unknown!"}}}});
         }
         if (Shared.compareHash(password, data.password)) {
             return callback(null);
         } else {
-            return callback(true);
+            return callback({error: {password: {properties: {message: "Password is incorrect!"}}}});
         }
     });
 }
@@ -105,12 +106,27 @@ AccountModel.statics.ValidateLogin = function (username, password, callback) {
 /**
  * Combines the Model, Authorization and the validationError objects into one for the view to use
  */
-AccountModel.statics.GetModel = function (res) {
+AccountModel.statics.GetModel = function (req, res) {
 
     let model = {};
 
-    for(let key in AccountModel.tree){
+    for (let key in AccountModel.tree) {
+
+        //add keys
         AccountModel.tree[key].key = key;
+        
+        //add any previous data or validation errors
+        if (AccountModel.tree[key]) {
+
+            //values
+            AccountModel.tree[key].value = req.body[key] || "";
+
+            //errors
+            if (res.user.error && res.user.error[key]) {
+                AccountModel.tree[key].error = res.user.error[key].properties.message;
+                res.user.error[key].properties.message = "";
+            }
+        }
     }
 
     Object.assign(model, AccountModel.tree, res.user)

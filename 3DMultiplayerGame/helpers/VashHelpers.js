@@ -9,13 +9,13 @@ module.exports = function () {
      * LabelFor()
      * @returns html markup representing a label
      */
-    vash.helpers.LabelFor = function (model, attributes = {}) {
+    vash.helpers.LabelFor = function (property, attributes = {}) {
 
         this.buffer.push(`
             <label 
-              for="${model.key}" 
+              for="${property.key}" 
               ${processAttributes(attributes)}>
-                ${model.display}
+                ${property.display}
             </label>
         `);
     };
@@ -25,15 +25,17 @@ module.exports = function () {
      * @returns html markup representing a text box
      */
 
-    vash.helpers.TextBoxFor = function (prop, attributes = {}) {
+    vash.helpers.TextBoxFor = function (property, attributes = {}) {
         
-        Object.assign(attributes, processValidation(prop));
+        property.value = property.value || "";
+        Object.assign(attributes, processValidation(property));
         
         this.buffer.push(`
             <input 
               type="text" 
-              id="${prop.key}" 
-              name="${prop.key}"
+              id="${property.key}" 
+              name="${property.key}"
+              value="${property.value}"
               ${processAttributes(attributes)} />
         `);
     };
@@ -43,15 +45,15 @@ module.exports = function () {
      * @returns html markup representing a text box
      */
 
-    vash.helpers.PasswordBoxFor = function (prop, attributes = {}) {
+    vash.helpers.PasswordBoxFor = function (property, attributes = {}) {
 
-        Object.assign(attributes, processValidation(prop));
+        Object.assign(attributes, processValidation(property));
 
         this.buffer.push(`
             <input 
               type="password" 
-              id="${prop.key}" 
-              name="${prop.key}" 
+              id="${property.key}" 
+              name="${property.key}" 
               ${processAttributes(attributes)} />
         `);
     };
@@ -60,13 +62,17 @@ module.exports = function () {
      * ValdidationMessageFor()
      * @returns html markup representing validation needed for a specific model property
      */
-    vash.helpers.ValidationMessageFor = function (prop, attributes = {}) {
+    vash.helpers.ValidationMessageFor = function (property, attributes = {}) {
+
+        property.error = property.error || "";
+        
         this.buffer.push(`
             <div 
               class="text-danger field-validation-valid" 
-              data-valmsg-for="${prop.key}"
+              data-valmsg-for="${property.key}"
               data-valmsg-replace="true"
               ${processAttributes(attributes)}>
+              <span>${property.error}</span>
             </div>
         `);
     };

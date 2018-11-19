@@ -9,7 +9,7 @@ const permit = require("../middleware/permit.js");
  * GET:/Account/register.html
  */
 router.get("/register.html", permit(["public"]), (req, res) => {
-    res.render("Account/register", AccountModel.GetModel(res));
+    res.render("Account/register", AccountModel.GetModel(req,res));
 });
 
 /**
@@ -23,7 +23,8 @@ router.post("/register.html", permit(["public"]),(req, res) => {
 
     account.save((err) => {
         if (err) {
-            res.render("Account/register", AccountModel.GetModel(res));
+            res.user.error = err.errors;
+            res.render("Account/register", AccountModel.GetModel(req,res));
         } else {
             res.redirect("/Account/login.html");
         }
@@ -34,7 +35,7 @@ router.post("/register.html", permit(["public"]),(req, res) => {
  * GET:/Account/login.html
  */
 router.get("/login.html", permit(["public"]), (req, res) => {
-        res.render("Account/login", AccountModel.GetModel(res));
+        res.render("Account/login", AccountModel.GetModel(req,res));
 });
 
 /**
@@ -47,7 +48,9 @@ router.post("/login.html", permit(["public"]), (req, res) => {
 
     AccountModel.ValidateLogin(username, password, (err) => {
         if (err) {
-            return res.render("Account/login", AccountModel.GetModel(res));
+            res.user.error = err.error;
+            err.error = null;
+            return res.render("Account/login", AccountModel.GetModel(req,res));
         } else {
 
             let payload = {
@@ -73,7 +76,7 @@ router.post("/login.html", permit(["public"]), (req, res) => {
  * GET:/Account/dashboard.html
  */
 router.get("/dashboard.html", permit(["user", "admin"], "/Account/login.html"), (req, res) => {
-        res.render("Account/dashboard", AccountModel.GetModel(res));
+        res.render("Account/dashboard", AccountModel.GetModel(req, res));
 });
 
 /**
