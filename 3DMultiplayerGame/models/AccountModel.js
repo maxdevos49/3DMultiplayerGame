@@ -112,8 +112,8 @@ AccountModel.statics.GetModel = function (req, res) {
 
     for (let key in AccountModel.tree) {
 
-        //add keys
-        AccountModel.tree[key].key = key;
+        //add path
+        AccountModel.tree[key].path = key;
         
         //add any previous data or validation errors
         if (AccountModel.tree[key]) {

@@ -9,11 +9,12 @@ module.exports = function () {
      * LabelFor()
      * @returns html markup representing a label
      */
-    vash.helpers.LabelFor = function (property, attributes = {}) {
+    vash.helpers.LabelFor = function (model, attributes = {}) {
+        property = model(this.model);
 
         this.buffer.push(`
             <label 
-              for="${property.key}" 
+              for="${property.path}" 
               ${processAttributes(attributes)}>
                 ${property.display}
             </label>
@@ -25,7 +26,8 @@ module.exports = function () {
      * @returns html markup representing a text box
      */
 
-    vash.helpers.TextBoxFor = function (property, attributes = {}) {
+    vash.helpers.TextBoxFor = function (model, attributes = {}) {
+        property = model(this.model);
         
         property.value = property.value || "";
         Object.assign(attributes, processValidation(property));
@@ -33,8 +35,8 @@ module.exports = function () {
         this.buffer.push(`
             <input 
               type="text" 
-              id="${property.key}" 
-              name="${property.key}"
+              id="${property.path}" 
+              name="${property.path}"
               value="${property.value}"
               ${processAttributes(attributes)} />
         `);
@@ -45,15 +47,16 @@ module.exports = function () {
      * @returns html markup representing a text box
      */
 
-    vash.helpers.PasswordBoxFor = function (property, attributes = {}) {
+    vash.helpers.PasswordBoxFor = function (model, attributes = {}) {
+        property = model(this.model);
 
         Object.assign(attributes, processValidation(property));
 
         this.buffer.push(`
             <input 
               type="password" 
-              id="${property.key}" 
-              name="${property.key}" 
+              id="${property.path}" 
+              name="${property.path}" 
               ${processAttributes(attributes)} />
         `);
     };
@@ -62,14 +65,15 @@ module.exports = function () {
      * ValdidationMessageFor()
      * @returns html markup representing validation needed for a specific model property
      */
-    vash.helpers.ValidationMessageFor = function (property, attributes = {}) {
+    vash.helpers.ValidationMessageFor = function (model, attributes = {}) {
+        property = model(this.model);
 
         property.error = property.error || "";
         
         this.buffer.push(`
             <div 
               class="text-danger field-validation-valid" 
-              data-valmsg-for="${property.key}"
+              data-valmsg-for="${property.path}"
               data-valmsg-replace="true"
               ${processAttributes(attributes)}>
               <span>${property.error}</span>
@@ -107,7 +111,7 @@ module.exports = function () {
                 Object.assign(result, {"data-val-required": property.required[1]});
            }else{
                //use generic message
-               Object.assign(result, {"data-val-required": `${property.display || property.key} is required!`});
+               Object.assign(result, {"data-val-required": `${property.display || property.path} is required!`});
            }
         }
 
@@ -126,7 +130,7 @@ module.exports = function () {
                //use generic message
                Object.assign(result, {
                     "data-val-minlength-min": property.minlength,
-                    "data-val-minlength":`${property.display || property.key} must be atleast ${property.minlength} characters long!`
+                    "data-val-minlength":`${property.display || property.path} must be atleast ${property.minlength} characters long!`
                 });
            }
         }
@@ -146,7 +150,7 @@ module.exports = function () {
                //use generic message
                Object.assign(result, {
                     "data-val-maxlength-max": property.maxlength,
-                    "data-val-maxlength":`${property.display || property.key} cannot exceed ${property.maxlength} characters long!`
+                    "data-val-maxlength":`${property.display || property.path} cannot exceed ${property.maxlength} characters long!`
                 });
            }
         }
@@ -166,7 +170,7 @@ module.exports = function () {
                //use generic message
                Object.assign(result, {
                     "data-val-equalto-other": property.matches,
-                    "data-val-equalto":`${property.display || property.key} must match ${property.matches}!`
+                    "data-val-equalto":`${property.display || property.path} must match ${property.matches}!`
                 });
            }
         }

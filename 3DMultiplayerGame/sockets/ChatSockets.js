@@ -4,7 +4,8 @@ let Shared = require("../helpers/Shared.js");
 module.exports = function(io){
 
     io.on('connection', (socket) => {
-        if(socket.decoded.auth){
+        if(socket.user.auth){
+            // console.log(socket.user);
 
             /**
              * give client last 50 messages on new connection
@@ -25,7 +26,7 @@ module.exports = function(io){
             socket.on("newMessage", (data) => {
                 
                 let message = {
-                    username: socket.decoded.username,
+                    username: socket.user.username,
                     message: Shared.escapeHtml(data),
                 }
 
