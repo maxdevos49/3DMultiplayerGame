@@ -9,7 +9,8 @@ module.exports = function () {
      * LabelFor()
      * @returns html markup representing a label
      */
-    vash.helpers.LabelFor = function (property, attributes = {}) {
+    vash.helpers.LabelFor = function (model, attributes = {}) {
+        property = model(this.model);
 
         this.buffer.push(`
             <label 
@@ -25,7 +26,8 @@ module.exports = function () {
      * @returns html markup representing a text box
      */
 
-    vash.helpers.TextBoxFor = function (property, attributes = {}) {
+    vash.helpers.TextBoxFor = function (model, attributes = {}) {
+        property = model(this.model);
         
         property.value = property.value || "";
         Object.assign(attributes, processValidation(property));
@@ -45,7 +47,8 @@ module.exports = function () {
      * @returns html markup representing a text box
      */
 
-    vash.helpers.PasswordBoxFor = function (property, attributes = {}) {
+    vash.helpers.PasswordBoxFor = function (model, attributes = {}) {
+        property = model(this.model);
 
         Object.assign(attributes, processValidation(property));
 
@@ -62,7 +65,8 @@ module.exports = function () {
      * ValdidationMessageFor()
      * @returns html markup representing validation needed for a specific model property
      */
-    vash.helpers.ValidationMessageFor = function (property, attributes = {}) {
+    vash.helpers.ValidationMessageFor = function (model, attributes = {}) {
+        property = model(this.model);
 
         property.error = property.error || "";
         

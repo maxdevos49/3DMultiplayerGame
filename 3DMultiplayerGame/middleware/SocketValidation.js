@@ -8,8 +8,9 @@ module.exports = (socket, next) => {
         result = Shared.tokenCheck(socket.cookies["WWW-Authenticate"]);
     } else {
         result = {"auth": false};
+
     }
 
-    socket.decoded = result;
+    socket.user = result;
     next();
 };

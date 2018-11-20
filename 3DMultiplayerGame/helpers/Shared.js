@@ -54,7 +54,7 @@ class Shared {
     static tokenCheck(token) {
         let result;
 
-        try {
+         try {
             result = jwt.verify(token, process.env.secretKey || "SuperSecretKey");
         } catch (err) {
             result = {

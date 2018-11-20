@@ -12,14 +12,14 @@
                     <form class="form" method="POST" action="/Account/login.html" style="padding: 3vh;">
                         <h3>Login</h3>
                         <div class="form-group">
-                            @html.LabelFor(model.username)
-                            @html.TextBoxFor(model.username, { class: "form-control", autocomplete: "username"})
-                            @html.ValidationMessageFor(model.username)
+                            @html.LabelFor(model => model.username)
+                            @html.TextBoxFor(model => model.username, { class: "form-control", autocomplete: "username"})
+                            @html.ValidationMessageFor(model => model.username)
                         </div>
                         <div class="form-group">
-                            @html.LabelFor(model.password)
-                            @html.PasswordBoxFor(model.password, {class: "form-control", autocomplete: "current-password"})
-                            @html.ValidationMessageFor(model.password)
+                            @html.LabelFor(model => model.password)
+                            @html.PasswordBoxFor(model => model.password, {class: "form-control", autocomplete: "current-password"})
+                            @html.ValidationMessageFor(model => model.password)
                         </div>
                         <div>
                             <input class="btn btn-info" type="submit" value="Sign In"> 

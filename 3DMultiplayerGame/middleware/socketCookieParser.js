@@ -4,7 +4,7 @@ module.exports = function(socket, next) {
         if (socket.handshake.headers.cookie.length == 0){ next(); }
 
         let cookies = socket.handshake.headers.cookie.split(" ");
-        //adding semicolon here is simpler then checking for it later because last one does not have one
+
         cookies[cookies.length - 1] += ";";
         let result = {};
 
@@ -14,8 +14,7 @@ module.exports = function(socket, next) {
             result[parts[0].trim()] = (parts[1].substring(0,parts[1].length - 1)).trim();
 
         });
-
-        socket.cookies = JSON.stringify(result);
+        socket.cookies = result;
 
     next();
 }
