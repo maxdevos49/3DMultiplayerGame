@@ -14,7 +14,7 @@ module.exports = function () {
 
         this.buffer.push(`
             <label 
-              for="${property.key}" 
+              for="${property.path}" 
               ${processAttributes(attributes)}>
                 ${property.display}
             </label>
@@ -35,8 +35,8 @@ module.exports = function () {
         this.buffer.push(`
             <input 
               type="text" 
-              id="${property.key}" 
-              name="${property.key}"
+              id="${property.path}" 
+              name="${property.path}"
               value="${property.value}"
               ${processAttributes(attributes)} />
         `);
@@ -55,8 +55,8 @@ module.exports = function () {
         this.buffer.push(`
             <input 
               type="password" 
-              id="${property.key}" 
-              name="${property.key}" 
+              id="${property.path}" 
+              name="${property.path}" 
               ${processAttributes(attributes)} />
         `);
     };
@@ -73,7 +73,7 @@ module.exports = function () {
         this.buffer.push(`
             <div 
               class="text-danger field-validation-valid" 
-              data-valmsg-for="${property.key}"
+              data-valmsg-for="${property.path}"
               data-valmsg-replace="true"
               ${processAttributes(attributes)}>
               <span>${property.error}</span>
@@ -111,7 +111,7 @@ module.exports = function () {
                 Object.assign(result, {"data-val-required": property.required[1]});
            }else{
                //use generic message
-               Object.assign(result, {"data-val-required": `${property.display || property.key} is required!`});
+               Object.assign(result, {"data-val-required": `${property.display || property.path} is required!`});
            }
         }
 
@@ -130,7 +130,7 @@ module.exports = function () {
                //use generic message
                Object.assign(result, {
                     "data-val-minlength-min": property.minlength,
-                    "data-val-minlength":`${property.display || property.key} must be atleast ${property.minlength} characters long!`
+                    "data-val-minlength":`${property.display || property.path} must be atleast ${property.minlength} characters long!`
                 });
            }
         }
@@ -150,7 +150,7 @@ module.exports = function () {
                //use generic message
                Object.assign(result, {
                     "data-val-maxlength-max": property.maxlength,
-                    "data-val-maxlength":`${property.display || property.key} cannot exceed ${property.maxlength} characters long!`
+                    "data-val-maxlength":`${property.display || property.path} cannot exceed ${property.maxlength} characters long!`
                 });
            }
         }
@@ -170,7 +170,7 @@ module.exports = function () {
                //use generic message
                Object.assign(result, {
                     "data-val-equalto-other": property.matches,
-                    "data-val-equalto":`${property.display || property.key} must match ${property.matches}!`
+                    "data-val-equalto":`${property.display || property.path} must match ${property.matches}!`
                 });
            }
         }
