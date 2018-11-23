@@ -54,7 +54,7 @@ class Shared {
     static tokenCheck(token) {
         let result;
 
-         try {
+        try {
             result = jwt.verify(token, process.env.secretKey || "SuperSecretKey");
         } catch (err) {
             result = {
@@ -81,6 +81,40 @@ class Shared {
             return map[m];
         });
     }
-}
 
+
+    /**
+     * Creates a model for a view to use to display data
+     * @param {*} req 
+     * @param {*} res 
+     * @param {*} model 
+     * @param {*} data
+     * @returns a object containing all the information the view needs to function
+     */
+    static getModel(givenResponse, givenModel = {}, givenData = {}, givenValidation = {}) {
+
+        //create result object
+        let result = {
+            authentication: {},
+            model: {},
+            data: {},
+            validation: {}
+        };
+        
+        result.model = givenModel.schema.tree;
+
+        //add path
+        for (let key in result.model) {
+            result.model[key].path = key;
+        }
+
+        result.authentication = givenResponse.user;
+        result.data = givenData;
+        result.validation = givenValidation;
+
+        // console.log(result)
+
+        return result;
+    }
+}
 module.exports = Shared;

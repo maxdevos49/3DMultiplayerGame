@@ -13,12 +13,12 @@
                         <h3>Login</h3>
                         <div class="form-group">
                             @html.LabelFor(model => model.username)
-                            @html.TextBoxFor(model => model.username, { class: "form-control", autocomplete: "username"})
+                            @html.TextBoxFor(model => model.username, null, { class: "form-control", autocomplete: "username"})
                             @html.ValidationMessageFor(model => model.username)
                         </div>
                         <div class="form-group">
                             @html.LabelFor(model => model.password)
-                            @html.PasswordBoxFor(model => model.password, {class: "form-control", autocomplete: "current-password"})
+                            @html.PasswordBoxFor(model => model.password, null, {class: "form-control", autocomplete: "current-password"})
                             @html.ValidationMessageFor(model => model.password)
                         </div>
                         <div>
