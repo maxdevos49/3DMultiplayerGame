@@ -101,7 +101,7 @@ class Shared {
      * 
      * @returns {Object} an object containing all the information the view needs to function
      */
-    static getModel(givenResponse, givenModel = {}, givenData = {}) {
+    static getModel(givenResponse, givenModel = null, givenData = null) {
 
         //init result object
         let result = {
@@ -112,7 +112,7 @@ class Shared {
         };
 
         //model processing
-        if (givenModel.schema) {
+        if (givenModel) {
             result.model = givenModel.schema.tree;
             //add path
             for (let key in givenModel.schema.tree) {
@@ -121,18 +121,18 @@ class Shared {
         }
 
         //validation processing
-        if(givenResponse.user.error){
+        if (givenResponse.user.error) {
             //add validation
-            for(let key in givenResponse.user.error){
-                result.validation[key] =  givenResponse.user.error[key].properties.message;
+            for (let key in givenResponse.user.error) {
+                result.validation[key] = givenResponse.user.error[key].properties.message;
             }
         }
 
         //add authentication
         result.authentication = givenResponse.user;
-
+        
         //add data
-        result.data = givenData;
+        result.data = givenData || givenResponse.req.body;
 
         return result;
     }
