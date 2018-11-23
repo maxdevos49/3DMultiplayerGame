@@ -25,7 +25,7 @@ module.exports = function () {
      * TextBoxFor()
      * @returns html markup representing a text box
      */
-    vash.helpers.TextBoxFor = function (model,value='', attributes = {}) {
+    vash.helpers.TextBoxFor = function (model,  value='', attributes = {}) {
         property = model(this.model.model);
         value = model(this.model.data);
 
@@ -94,7 +94,6 @@ module.exports = function () {
      */
     vash.helpers.DisplayNameFor = function (model) {
         property = model(this.model.model);
-        console.log(property);
         this.buffer.push(property.display || property.path);
     };
 

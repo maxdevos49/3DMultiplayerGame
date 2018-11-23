@@ -1,19 +1,26 @@
 const express = require('express');
 const router = express.Router();
+const Shared = require("../helpers/Shared.js");
 
-//get:index.html
+/**
+ * GET:/index.html
+ */
 router.get("/index.html", (req, res) => {
-    res.render("Home/index", res.user);
+    res.render("Home/index", Shared.getModel(res));
 });
 
-//get:index.html
+/**
+ * GET:/index.html
+ */
 router.get("/", (req, res) => {
-    res.render("Home/index", res.user);
+    res.render("Home/index", Shared.getModel(res));
 });
 
-//get:about.html
+/**
+ * GET:/about.html
+ */
 router.get("/about.html", (req,res) => {
-    res.render("Home/about", res.user);
+    res.render("Home/about", Shared.getModel(res));
 });
 
 module.exports = router;

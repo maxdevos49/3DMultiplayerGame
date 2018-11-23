@@ -2,16 +2,19 @@ const bcyrpt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 /**
- *
  * Shared Class to implement common operatons
  *
+ * @author Maxwell DeVos
+ * 
  */
 class Shared {
 
     /**
      * Method to hash a string like a passord when a new user is registered
      *
-     * @param {*} str
+     * @param {string} str
+     * 
+     * @returns {string}a string representing a hash
      */
     static hashString(str) {
         let salt = bcyrpt.genSaltSync(process.env.SALT || 5);
@@ -19,11 +22,12 @@ class Shared {
     }
 
     /**
-     *
      * Method to compare a string to a hash to tell if they match
      *
-     * @param {*} str
-     * @param {*} hash
+     * @param {string} str
+     * @param {string} hash
+     * 
+     * @returns {boolean} true or false
      */
     static compareHash(str, hash) {
         return bcyrpt.compareSync(str, hash);
@@ -31,9 +35,10 @@ class Shared {
 
     /**
      * Method generates a token based on a given
-     * @returns a token or false if signing fails
-     *
-     * @param {*} payload
+     * 
+     * @param {string} payload
+     * 
+     * @returns {string} a token or false if signing fails
      */
     static tokenGen(payload) {
         let result;
@@ -47,9 +52,10 @@ class Shared {
 
     /**
      * Method checks the validity of a token
-     * @returns decoded token otherwise false
      *
-     * @param {*} token
+     * @param {string} token
+     * 
+     * @returns {Object} decoded token otherwise false
      */
     static tokenCheck(token) {
         let result;
@@ -66,7 +72,10 @@ class Shared {
 
     /**
      * Method designed to escape html in a string
-     * @param {*} text
+     * 
+     * @param {string} text
+     * 
+     * @returns {string} an escaped string
      */
     static escapeHtml(text) {
         var map = {
@@ -85,34 +94,45 @@ class Shared {
 
     /**
      * Creates a model for a view to use to display data
-     * @param {*} req 
-     * @param {*} res 
-     * @param {*} model 
-     * @param {*} data
-     * @returns a object containing all the information the view needs to function
+     * 
+     * @param {Object} givenResponse 
+     * @param {Object} givenModel
+     * @param {Object} givenData
+     * 
+     * @returns {Object} an object containing all the information the view needs to function
      */
-    static getModel(givenResponse, givenModel = {}, givenData = {}, givenValidation = {}) {
+    static getModel(givenResponse, givenModel = {}, givenData = {}) {
 
-        //create result object
+        //init result object
         let result = {
             authentication: {},
             model: {},
             data: {},
             validation: {}
         };
-        
-        result.model = givenModel.schema.tree;
 
-        //add path
-        for (let key in result.model) {
-            result.model[key].path = key;
+        //model processing
+        if (givenModel.schema) {
+            result.model = givenModel.schema.tree;
+            //add path
+            for (let key in givenModel.schema.tree) {
+                result.model[key].path = key;
+            }
         }
 
-        result.authentication = givenResponse.user;
-        result.data = givenData;
-        result.validation = givenValidation;
+        //validation processing
+        if(givenResponse.user.error){
+            //add validation
+            for(let key in givenResponse.user.error){
+                result.validation[key] =  givenResponse.user.error[key].properties.message;
+            }
+        }
 
-        // console.log(result)
+        //add authentication
+        result.authentication = givenResponse.user;
+
+        //add data
+        result.data = givenData;
 
         return result;
     }
