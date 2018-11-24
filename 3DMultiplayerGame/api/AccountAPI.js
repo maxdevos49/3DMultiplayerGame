@@ -4,7 +4,7 @@ const api = express.Router();
 /**
  * GET:/api/Account/dashboard
  * 
- * responds with meta information about their profile and stats
+ * responds with meta information about their profile and stats for ajax
  */
 api.get("/dashboard", (req, res) => {
     res.json({ "Implemented": false });
