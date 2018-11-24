@@ -11,32 +11,35 @@ const AccountModel = new Schema({
         required: true
     },
     password: {
-        display: "Password",
         type: String,
+        display: "Password",
         minlength: 8,
         maxlength: 50,
         required: true
     },
-    roles: [
-        {
-            type: String,
-            default: ["user"]
-        }
-    ],
+    role: {
+        type: String,
+        display: "Role",
+        default: "user"
+    },
     status: {
         type: Boolean,
+        display: "Status",
         default: true
     },
     highScore: {
         type: Number,
+        display: "High Score",
         default: 0
     },
     createdOn: {
         type: Date,
+        display: "Created On",
         default: Date.now()
     },
-    UpdatedOn: {
+    updatedOn: {
         type: Date,
+        display: "Updated On",
         default: Date.now()
     }
 
@@ -92,13 +95,13 @@ AccountModel.statics.ValidateLogin = function (username, password, callback) {
     this.findOne({ username: username }, "password", function (err, data) {
         if (err) throw err;
         if (!data) {
-            
-            return callback({error: {username: {properties: {message: "Username is unknown!"}}}});
+
+            return callback({ error: { username: { properties: { message: "Username is unknown!" } } } });
         }
         if (Shared.compareHash(password, data.password)) {
             return callback(null);
         } else {
-            return callback({error: {password: {properties: {message: "Password is incorrect!"}}}});
+            return callback({ error: { password: { properties: { message: "Password is incorrect!" } } } });
         }
     });
 }
@@ -108,28 +111,33 @@ AccountModel.statics.ValidateLogin = function (username, password, callback) {
  */
 AccountModel.statics.GetModel = function (req, res) {
 
-    let model = {};
+    // console.log(res.req);
 
-    for (let key in AccountModel.tree) {
+    let model = {};
+    let tree = {};
+    tree = AccountModel.tree;
+
+    for (let key in tree) {
 
         //add path
-        AccountModel.tree[key].path = key;
-        
+        tree[key].path = key;
+
         //add any previous data or validation errors
-        if (AccountModel.tree[key]) {
+        if (tree[key]) {
 
             //values
-            AccountModel.tree[key].value = req.body[key] || "";
+            tree[key].value = req.body[key] || "";
 
             //errors
             if (res.user.error && res.user.error[key]) {
-                AccountModel.tree[key].error = res.user.error[key].properties.message;
+                tree[key].error = '';
+                tree[key].error = res.user.error[key].properties.message;
                 res.user.error[key].properties.message = "";
             }
         }
     }
 
-    Object.assign(model, AccountModel.tree, res.user)
+    Object.assign(model, tree, res.user)
 
     return model;
 }

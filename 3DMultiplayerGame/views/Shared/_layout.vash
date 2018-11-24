@@ -8,12 +8,7 @@
         @*CSS*@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/layout.css">
-
-        @*Favicon*@
         <link rel="icon" type="img/png" href="/images/gamepad.png">
-
-        @*Javascript*@
-
 
 		<title>@model.title | 3D Multiplayer Game</title>
     </head>
@@ -38,7 +33,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/about.html">About</a>
                         </li>
-                        @if(!model.auth){
+                        @if(!model.authentication.auth){
                         <li class="nav-item">
                             <a class="btn btn-outline-info" href="/Account/login.html">Login</a>
                         </li>
@@ -47,7 +42,7 @@
                         </li>
                         }else{
                         <li class="nav-item">
-                            <a class="btn btn-outline-info" href="/Account/dashboard.html">Dashboard</a>
+                            <a class="btn btn-outline-info" href="/Account/dashboard.html">@@@model.authentication.username</a>
                         </li>
                         <li class="nav-item">
                             <a class="btn btn-outline-info" href="/Account/logout.html">Logout</a>
@@ -88,7 +83,7 @@
                         <ul class="list-unstyled">
                             <li><a class="link" href="/Account/login.html">Login</a></li>
                             <li><a class="link" href="/Account/register.html">Register</a></li>
-                            <li><a class="link" href="/game/leaderboard.html">Stats</a></li>
+                            <li><a class="link" href="/game/leaderboard.html">Leaderboard</a></li>
                             <li><a class="link" href="/Account/dashboard.html">Dashboard</a></li>
                         </ul>
                     </div>
