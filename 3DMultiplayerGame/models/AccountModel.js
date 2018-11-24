@@ -6,6 +6,7 @@ const AccountModel = new Schema({
     username: {
         display: "Username",
         type: String,
+        validate: [/^[A-Za-z0-9_]+$/, "Username can only contain alphanumeric characters and underscores!"],
         minlength: 3,
         maxlength: 20,
         required: true
@@ -104,42 +105,6 @@ AccountModel.statics.ValidateLogin = function (username, password, callback) {
             return callback({ error: { password: { properties: { message: "Password is incorrect!" } } } });
         }
     });
-}
-
-/**
- * Combines the Model, Authorization and the validationError objects into one for the view to use
- */
-AccountModel.statics.GetModel = function (req, res) {
-
-    // console.log(res.req);
-
-    let model = {};
-    let tree = {};
-    tree = AccountModel.tree;
-
-    for (let key in tree) {
-
-        //add path
-        tree[key].path = key;
-
-        //add any previous data or validation errors
-        if (tree[key]) {
-
-            //values
-            tree[key].value = req.body[key] || "";
-
-            //errors
-            if (res.user.error && res.user.error[key]) {
-                tree[key].error = '';
-                tree[key].error = res.user.error[key].properties.message;
-                res.user.error[key].properties.message = "";
-            }
-        }
-    }
-
-    Object.assign(model, tree, res.user)
-
-    return model;
 }
 
 module.exports = mongoose.model('Account', AccountModel);

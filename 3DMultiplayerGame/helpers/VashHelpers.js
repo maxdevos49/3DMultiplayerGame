@@ -109,11 +109,6 @@ module.exports = function () {
         this.buffer.push(property.display || property.path);
     };
 
-    vash.helpers.DisplayNameFor = function (model) {
-        property = model(this.model.model);
-        this.buffer.push(property.display || property.path);
-    };
-
 
     /**
      * Helper function that turns the attribute object into a html attribute string for insertsion into an html tag
