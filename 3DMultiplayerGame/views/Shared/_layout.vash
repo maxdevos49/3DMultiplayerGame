@@ -42,7 +42,7 @@
                         </li>
                         }else{
                         <li class="nav-item">
-                            <a class="btn btn-outline-info" href="/Account/dashboard.html">Dashboard</a>
+                            <a class="btn btn-outline-info" href="/Account/dashboard.html">@@@model.authentication.username</a>
                         </li>
                         <li class="nav-item">
                             <a class="btn btn-outline-info" href="/Account/logout.html">Logout</a>
@@ -83,7 +83,7 @@
                         <ul class="list-unstyled">
                             <li><a class="link" href="/Account/login.html">Login</a></li>
                             <li><a class="link" href="/Account/register.html">Register</a></li>
-                            <li><a class="link" href="/game/leaderboard.html">Stats</a></li>
+                            <li><a class="link" href="/game/leaderboard.html">Leaderboard</a></li>
                             <li><a class="link" href="/Account/dashboard.html">Dashboard</a></li>
                         </ul>
                     </div>

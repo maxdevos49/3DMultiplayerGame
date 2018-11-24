@@ -8,34 +8,51 @@
         
         <div class="container">
             <div class="row ">
-                <div class="col-sm bg-info text-white" style="border-radius: 5px;padding: 3vh;">
+                <div class="col-sm bg-info text-white" style="border-radius: 5px; padding: 3vh;">
                     <h3>Leaderboard Rankings</h3>
-                    <table class="table table-hover">
+
+                    <table class="table table-hover table-striped">
                         <thead>
                             <tr>
-                                <td><b>Rank</b></td>
-                                <td><b>Username</b></td>
-                                <td><b>Score</b></td>
-                                <td><b>Kills</b></td>
-                                <td><b>Games</b></td>
+                                <th>
+                                    Rank
+                                </th>
+                                <th>
+                                    @html.DisplayNameFor(model => model.username)
+                                </th>
+                                <th>
+                                    @html.DisplayNameFor(model => model.highScore)
+                                </th>
+                                <th>
+                                    Kills
+                                </th>
+                                <th>
+                                    Games
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @* Loop through users here *@
+
+                        @model.data.forEach(function(user, index) {
                             <tr>
-                                <td>1</td>
-                                <td>Madmax</td>
-                                <td>1000</td>
-                                <td>245</td>
-                                <td>15</td>
+                                <td>
+                                    @(index + 1)
+                                </td>
+                                <td>
+                                    @@@html.DisplayFor(model => user.username)
+                                </td>
+                                <td>
+                                    @html.DisplayFor(model => user.highScore)
+                                </td>
+                                <td>
+                                    0
+                                </td>
+                                <td>
+                                    0
+                                </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Madmax</td>
-                                <td>1000</td>
-                                <td>245</td>
-                                <td>15</td>
-                            </tr>
+                        })
+
                         </tbody>
                     </table>
 

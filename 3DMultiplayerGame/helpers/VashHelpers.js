@@ -25,7 +25,7 @@ module.exports = function () {
      * TextBoxFor()
      * @returns html markup representing a text box
      */
-    vash.helpers.TextBoxFor = function (model,  value='', attributes = {}) {
+    vash.helpers.TextBoxFor = function (model, value = '', attributes = {}) {
         property = model(this.model.model);
         value = model(this.model.data);
 
@@ -45,7 +45,7 @@ module.exports = function () {
      * PasswordBoxFor()
      * @returns html markup representing a text box
      */
-    vash.helpers.PasswordBoxFor = function (model, value='', attributes = {}) {
+    vash.helpers.PasswordBoxFor = function (model, value = '', attributes = {}) {
         property = model(this.model.model);
 
         Object.assign(attributes, processValidation(property));
@@ -82,9 +82,21 @@ module.exports = function () {
      * DisplayFor()
      * @returns the value of a model property
      */
-    vash.helpers.DisplayFor = function (model) {
+    vash.helpers.DisplayFor = function (model, options = null) {
         property = model(this.model.data);
-        //can not be an array here
+        propertyModel = model(this.model.model);
+
+        if(options){
+            if(options.type === "Date") {
+                let date = new Date(Date.parse(property));
+                property = `${date.toLocaleString()}`;
+            }
+        }
+        
+        if(property === 0){
+            property = property.toString();
+        }
+
         this.buffer.push(property || '');
     };
 
@@ -92,6 +104,11 @@ module.exports = function () {
      * DisplayNameFor()
      * @returns the name of a model property
      */
+    vash.helpers.DisplayNameFor = function (model) {
+        property = model(this.model.model);
+        this.buffer.push(property.display || property.path);
+    };
+
     vash.helpers.DisplayNameFor = function (model) {
         property = model(this.model.model);
         this.buffer.push(property.display || property.path);

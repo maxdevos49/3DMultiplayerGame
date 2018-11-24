@@ -76,7 +76,10 @@ router.post("/login.html", permit(["public"]), (req, res) => {
  * GET:/Account/dashboard.html
  */
 router.get("/dashboard.html", permit(["user", "admin"], "/Account/login.html"), (req, res) => {
-        res.render("Account/dashboard", Shared.getModel(res,AccountModel));
+    AccountModel.findOne({username: res.user.username},function(err, data) {
+        if (err) throw err;
+        res.render("Account/dashboard", Shared.getModel(res,AccountModel, data));
+    });
 });
 
 /**

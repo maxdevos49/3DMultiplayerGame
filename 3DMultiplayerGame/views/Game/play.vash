@@ -16,7 +16,7 @@
         <script src="/scripts/chat/chat.js"></script>
         <script src="/scripts/game/Player.js"></script>
         <script src="/scripts/game/init.js"></script>
-		<title>Game | Game Jam 2018</title>
+		<title>Game | 3D Multiplayer Game</title>
     </head>
     <body class="bg-dark" onload="init()">
 
@@ -24,7 +24,7 @@
             <nav class="navbar navbar-dark">
                 <a class="navbar-brand" href="/">
                     <img src="/images/gamepad.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-                    Game Jam 2018
+                    3D Multiplayer Game
                 </a>
                 <div>
                     <ul class="nav">

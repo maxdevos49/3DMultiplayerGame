@@ -11,30 +11,35 @@ const AccountModel = new Schema({
         required: true
     },
     password: {
-        display: "Password",
         type: String,
+        display: "Password",
         minlength: 8,
         maxlength: 50,
         required: true
     },
     role: {
         type: String,
+        display: "Role",
         default: "user"
     },
     status: {
         type: Boolean,
+        display: "Status",
         default: true
     },
     highScore: {
         type: Number,
+        display: "High Score",
         default: 0
     },
     createdOn: {
         type: Date,
+        display: "Created On",
         default: Date.now()
     },
-    UpdatedOn: {
+    updatedOn: {
         type: Date,
+        display: "Updated On",
         default: Date.now()
     }
 

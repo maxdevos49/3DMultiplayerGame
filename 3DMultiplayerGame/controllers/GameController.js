@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const permit = require("../middleware/permit.js");
 const Shared = require("../helpers/Shared.js");
+const AccountModel = require("../models/AccountModel.js");
 
 
 
@@ -17,7 +18,10 @@ router.get("/stats.html", (req, res) => {
 
 //get:leaderboard.html
 router.get("/leaderboard.html", (req, res) => {
-    res.render("Game/leaderboard", Shared.getModel(res));
+    AccountModel.find({status: true}, function(err, data){
+        if (err) throw err;
+        res.render("Game/leaderboard", Shared.getModel(res, AccountModel, data));
+    });
 });
 
 
