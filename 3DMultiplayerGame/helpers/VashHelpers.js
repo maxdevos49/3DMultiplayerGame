@@ -86,14 +86,14 @@ module.exports = function () {
         property = model(this.model.data);
         propertyModel = model(this.model.model);
 
-        if(options){
-            if(options.type === "Date") {
+        if (options) {
+            if (options.type === "Date") {
                 let date = new Date(Date.parse(property));
                 property = `${date.toLocaleString()}`;
             }
         }
-        
-        if(property === 0){
+
+        if (property === 0) {
             property = property.toString();
         }
 
@@ -104,11 +104,6 @@ module.exports = function () {
      * DisplayNameFor()
      * @returns the name of a model property
      */
-    vash.helpers.DisplayNameFor = function (model) {
-        property = model(this.model.model);
-        this.buffer.push(property.display || property.path);
-    };
-
     vash.helpers.DisplayNameFor = function (model) {
         property = model(this.model.model);
         this.buffer.push(property.display || property.path);
@@ -210,6 +205,35 @@ module.exports = function () {
         }
 
         /**
+         * Validate options
+         */
+        if (typeof (property.validate) !== "undefined") {
+            /**
+             * Regular Expression
+             *  data-val-regex="Error message"
+             *  data-val-regex-pattern="The regular expression (e.g. ^[a-z]+$)"
+             */
+            /*if (property.validate[0] instanceof RegExp || property.validate instanceof RegExp) {
+
+                //check model format
+                if (Array.isArray(property.validate)) {
+                    //use custom message
+                    Object.assign(result, {
+                        "data-val-regex": property.validate[1],
+                        "data-val-regex-pattern": property.validate[0]
+                    });
+                } else {
+                    //use generic message
+                    Object.assign(result, {
+                        "data-val-regex": `${property.display || property.path} must fit the pattern of '${property.validate}'`,
+                        "data-val-regex-pattern": property.validate
+                    });
+                }
+            }*/
+
+    }
+
+        /**
          * Credit Card
          *  data-val-creditcard="Error message"
          */
@@ -229,11 +253,6 @@ module.exports = function () {
          */
 
 
-        /**
-         * Regular Expression
-         *  data-val-regex="Error message"
-         *  data-val-regex-pattern="The regular expression (e.g. ^[a-z]+$)"
-         */
 
 
         /**
